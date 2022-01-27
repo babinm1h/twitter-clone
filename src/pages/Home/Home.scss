@@ -1,0 +1,292 @@
+@import "../../variables.scss";
+
+.home {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 15px 10px;
+    &__row {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__left {
+        max-width: 270px;
+        min-width: 270px;
+        @media (max-width: 1000px) {
+            max-width: 80px;
+            min-width: 80px;
+        }
+        &-sidebar {
+            position: fixed;
+            .sidebar-menu {
+                display: flex;
+                flex-direction: column;
+                ul {
+                    margin-bottom: 20px;
+                }
+                &__item {
+                    padding: 12px 15px;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    border-radius: 9999px;
+                    transition: all 0.1s linear;
+                    &:hover {
+                        background-color: $greyhover;
+                    }
+                    span {
+                        font-size: 20px;
+                        font-weight: 400;
+                        @media (max-width: 1000px) {
+                            display: none;
+                        }
+                    }
+                    &.active {
+                        color: $mainblue;
+                        span {
+                            font-weight: bold;
+                        }
+                    }
+                }
+                &__icon {
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+    &__main {
+        flex: 1 1 auto;
+        margin: 0 15px;
+        &_header {
+            margin-bottom: 25px;
+            h2 {
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+    }
+    &__right {
+        flex: 0 0 350px;
+        padding-left: 20px;
+        &-container {
+            position: fixed;
+            h3 {
+                font-weight: 800;
+                font-size: 20px;
+                margin-top: 50px;
+                padding: 12px 16px;
+            }
+        }
+    }
+    &__logo {
+        color: $mainblue;
+        cursor: pointer;
+        margin-left: 12px;
+        margin-bottom: 15px;
+    }
+}
+.tweet-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: $mainblue;
+    padding: 0 55px;
+    border-radius: 9999px;
+    height: 50px;
+    transition: all 0.1s linear;
+    &:hover {
+        background-color: darken($mainblue, 7%);
+    }
+    &:active {
+        background-color: darken($mainblue, 17%);
+    }
+    @media (max-width: 1000px) {
+        margin-left: 2px;
+        padding: 20px;
+        border-radius: 50%;
+    }
+    span {
+        font-size: 20px;
+        font-weight: bold;
+        @media (max-width: 1000px) {
+            display: none;
+        }
+    }
+    &__icon {
+        display: none;
+        @media (max-width: 1000px) {
+            display: block;
+        }
+    }
+}
+
+.tweet-form {
+    display: flex;
+    &__area {
+        width: 100%;
+        font-size: 20px;
+        resize: none;
+        height: auto;
+        margin-top: 5px;
+    }
+    img {
+        margin-right: 15px;
+    }
+    &__block {
+        width: 100%;
+    }
+}
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    ul {
+        display: flex;
+        align-items: center;
+    }
+    &__item {
+        margin-right: 15px;
+        .action-icon {
+            color: $mainblue;
+            cursor: pointer;
+        }
+    }
+    &__btn {
+        background-color: $mainblue;
+        color: white;
+        font-weight: bold;
+        &:hover {
+            background-color: darken($mainblue, 7%);
+        }
+        &:active {
+            background-color: darken($mainblue, 20%);
+        }
+        &:disabled {
+            background-color: lighten($mainblue, 25%);
+        }
+    }
+}
+//////////////////////////////////////// tweet
+.tweets {
+    margin-top: 35px;
+}
+.tweet {
+    display: flex;
+    margin-bottom: 25px;
+    &__body {
+        padding-top: 3px;
+        flex: 1 1 100%;
+        &_info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        &_name {
+            margin-right: 10px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        &_nick {
+            color: $grey;
+            margin-right: 10px;
+        }
+        &_date {
+            color: $grey;
+        }
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        justify-content: space-between;
+        ul {
+            flex: 1 1 100%;
+        }
+        &_item {
+            display: flex;
+            align-items: center;
+            color: $grey;
+            cursor: pointer;
+            transition: all 0.1s linear;
+            margin-right: 10px;
+            &:hover {
+                color: $mainblue;
+            }
+            span {
+                font-size: 13px;
+            }
+            &:last-of-type {
+                margin-right: 20%;
+            }
+        }
+        &_icon {
+            margin-right: 10px;
+            @media (max-width: 1000px) {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+/////////////////////// right
+.trends {
+    background-color: $invisiblegrey;
+    border-radius: 12px;
+    min-width: 320px;
+    &__item {
+        padding: 12px 16px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(#ccc, 0.1);
+        }
+        &_title {
+            font-weight: bold;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+        &_tweets {
+            color: $grey;
+            font-size: 13px;
+        }
+    }
+}
+.follow {
+    background-color: $invisiblegrey;
+    border-radius: 12px;
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: all 0.1s linear;
+        justify-content: space-between;
+        &:hover {
+            background-color: rgba(#ccc, 0.1);
+        }
+        &__name {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        &__nick {
+            font-size: 15px;
+            color: $grey;
+        }
+        &__btn {
+            background-color: black;
+            color: white;
+            &:hover {
+                background-color: lighten(black, 15%);
+            }
+            &:active {
+                background-color: lighten(black, 25%);
+            }
+        }
+        &__info {
+            display: flex;
+            align-items: center;
+        }
+    }
+}

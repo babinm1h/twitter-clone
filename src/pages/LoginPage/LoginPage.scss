@@ -1,0 +1,188 @@
+@import "../../variables.scss";
+.login {
+    &-content {
+        display: flex;
+        height: 100vh;
+    }
+    &-column {
+        height: 100%;
+    }
+    &-column-1 {
+        flex: 0 1 40%;
+        height: 100%;
+        background-image: url("../../img/LoginPage/bg.png");
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+        &-bg {
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+    &-column-2 {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        &__title {
+            font-weight: bold;
+            font-size: 64px;
+            margin: 48px 0;
+            line-height: 1.2;
+            span {
+                font-size: inherit;
+                display: block;
+            }
+            @media (max-width: 1000px) {
+                font-size: 47px;
+            }
+        }
+        &__subtitle {
+            font-size: 32px;
+            margin-bottom: 35px;
+            font-weight: 700;
+            line-height: 1.2;
+            span {
+                display: block;
+                font-size: inherit;
+            }
+            @media (max-width: 1000px) {
+                font-size: 22px;
+            }
+        }
+        &__icon {
+            color: $mainblue;
+            font-size: 45px;
+        }
+        &__agreement {
+            width: 300px;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: $grey;
+            a {
+                color: $mainblue;
+                font-size: inherit;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        &__login {
+            margin-top: 40px;
+            p {
+                font-weight: 700;
+                font-size: 17px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    &-footer {
+        text-align: center;
+        .footer-nav {
+            ul {
+                padding: 22px;
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            &__item {
+                margin: 5px 15px 5px 0;
+                a {
+                    font-size: 12px;
+                    color: $grey;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+.loginPage-btn {
+    overflow-wrap: break-word;
+    border: 1px solid $lightgrey;
+    border-radius: 9999px;
+    width: 300px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    height: 45px;
+    &:hover {
+        transition: all 0.2s linear;
+    }
+    &.blue {
+        background-color: $mainblue;
+        color: white;
+        &:hover {
+            background-color: darken($mainblue, 10%);
+        }
+    }
+    &.loginbtn {
+        color: $mainblue;
+        &:hover {
+            background-color: $bluehover;
+        }
+    }
+}
+.login-input {
+    border: 2px solid $lightgrey;
+    padding: 18px 8px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-top: 20px;
+    margin-bottom: 3px;
+    &:focus {
+        border: 2px solid $mainblue;
+        box-shadow: 0 0 2px $mainblue;
+    }
+    &.error {
+        border: 2px solid red;
+        &:focus {
+            border: 2px solid red;
+            box-shadow: 0 0 2px red;
+        }
+    }
+}
+.form {
+    &-button {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        width: 100%;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        margin-top: 20px;
+        transition: all 0.1s linear;
+        font-size: 15px;
+        &:hover {
+            background-color: lighten(#000000, 15%);
+        }
+        &:disabled {
+            background-color: lighten(#000000, 22%);
+            pointer-events: none;
+        }
+    }
+    &-error {
+        color: red;
+    }
+}
