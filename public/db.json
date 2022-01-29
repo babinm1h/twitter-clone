@@ -1,0 +1,116 @@
+{
+    "tweets": [
+        {
+            "_id": "61f3b7e11a91ba328c7ec9a7",
+            "text": "some text, hello w0rld some text, hello w0rld some text, hello w0rldsome text, hello w0rld some text, hello w0rld some text, hello w0rld some text, hello w0rld some text, hello w0rld some text, hello w0rld some text, hello w0rld some text, hello w0rld some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        },
+        {
+            "_id": "61f3b7e1594fcf3572fdc737",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Random",
+                "username": "r4nd0mje",
+                "avatarUrl": "https://pbs.twimg.com/profile_images/1468082946108239876/5UVLr4HF_400x400.jpg"
+            }
+        },
+        {
+            "_id": "61f3b7e127a005bfaa685f00",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        },
+        {
+            "_id": "61f3b7e1a5fb0750aed3ee65",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        },
+        {
+            "_id": "61f3b7e1dcf5f391227b2d03",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Ilya Osipov",
+                "username": "m0e",
+                "avatarUrl": "https://pbs.twimg.com/profile_images/1486424326626807809/95C-flGp_400x400.jpg"
+            }
+        },
+        {
+            "_id": "61f3b7e1f38eb2f7812c9efc",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        },
+        {
+            "_id": "61f3b7e1e9ccfa105967437c",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        },
+        {
+            "_id": "61f3b7e1289ca051d9e301e4",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        },
+        {
+            "_id": "61f3b7e135f8e611f3fd816e",
+            "text": "some text, hello w0rld",
+            "user": {
+                "fullName": "Kevin Rabier",
+                "username": "misutaaacsgod",
+                "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
+            }
+        }
+    ],
+    "users": [
+        {
+            "fullName": "Sasha",
+            "username": "s1mpleO",
+            "avatarUrl": "https://pbs.twimg.com/profile_images/1468082946108239876/5UVLr4HF_400x400.jpg"
+        },
+        {
+            "fullName": "m0NESY",
+            "username": "m0NESY13",
+            "avatarUrl": "https://pbs.twimg.com/profile_images/1486424326626807809/95C-flGp_400x400.jpg"
+        },
+        {
+            "fullName": "Sasha",
+            "username": "s1mple",
+            "avatarUrl": "https://pbs.twimg.com/profile_images/1486424326626807809/95C-flGp_400x400.jpg"
+        }
+    ],
+    "trends": [
+        {
+            "name": "В 2022",
+            "count": 777999
+        },
+        {
+            "name": "Коронавирус",
+            "count": 17872
+        },
+        {
+            "name": "Good luck",
+            "count": 7984
+        }
+    ]
+}

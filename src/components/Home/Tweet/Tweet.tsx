@@ -3,40 +3,52 @@ import { FaRegComment } from "react-icons/fa"
 import { FiRepeat } from "react-icons/fi"
 import { BsTwitter, BsImage, BsUpload } from "react-icons/bs"
 import { AiOutlineHome, AiOutlineSearch, AiOutlineHeart } from "react-icons/ai"
+import { ITweet } from '../../../types/TweetsTypes';
+import { NavLink } from 'react-router-dom';
 
-const Tweet = () => {
+interface ITweetProps {
+    item: ITweet
+}
+
+const Tweet: React.FC<ITweetProps> = ({ item }) => {
     return (
-        <li className="tweet">
-            <img src="https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6" alt="user" className="small-avatar" />
-            <div className="tweet__body">
-                <div className="tweet__body_info">
-                    <span className="tweet__body_name">Misha</span>
-                    <span className="tweet__body_nick">@m1sha777</span>
-                    <span className="tweet__body_date">• 7h</span>
+        <NavLink to={`/${item.user.username}/tweet/${item._id}`}>
+            <li className="tweet">
+                <NavLink to={`/${item.user.username}`}>
+                    <img src={item.user.avatarUrl} alt="user" className="small-avatar" />
+                </NavLink>
+                <div className="tweet__body">
+                    <div className="tweet__body__info">
+                        <NavLink to={`/${item.user.username}`}>
+                            <span className="tweet__body__name">{item.user.fullName}</span>
+                            <span className="tweet__body__nick">@{item.user.username}</span>
+                        </NavLink>
+                        <span className="tweet__body__date">• 7h</span>
+                    </div>
+                    <div className="tweet__body__text">{item.text}</div>
+                    <ul className="tweet__actions">
+                        <li className="tweet__actions_item">
+                            <FaRegComment className="tweet__actions_icon"
+                                size={17} />
+                            <span>177</span>
+                        </li>
+                        <li className="tweet__actions_item">
+                            <FiRepeat className="tweet__actions_icon"
+                                size={17} />
+                            <span>177</span>
+                        </li>
+                        <li className="tweet__actions_item">
+                            <AiOutlineHeart className="tweet__actions_icon"
+                                size={17} />
+                            <span>77</span>
+                        </li>
+                        <li className="tweet__actions_item">
+                            <BsUpload className="tweet__actions_icon" size={17} />
+                        </li>
+                    </ul>
                 </div>
-                <div className="tweet-body_text">Hello w0rld!!!</div>
-                <ul className="tweet__actions">
-                    <li className="tweet__actions_item">
-                        <FaRegComment className="tweet__actions_icon"
-                            size={17} />
-                        <span>177</span>
-                    </li>
-                    <li className="tweet__actions_item">
-                        <FiRepeat className="tweet__actions_icon"
-                            size={17} />
-                        <span>177</span>
-                    </li>
-                    <li className="tweet__actions_item">
-                        <AiOutlineHeart className="tweet__actions_icon"
-                            size={17} />
-                        <span>77</span>
-                    </li>
-                    <li className="tweet__actions_item">
-                        <BsUpload className="tweet__actions_icon" size={17} />
-                    </li>
-                </ul>
-            </div>
-        </li>
+            </li>
+        </NavLink>
     );
 };
 

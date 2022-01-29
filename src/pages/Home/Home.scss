@@ -26,7 +26,7 @@
                     margin-bottom: 20px;
                 }
                 &__item {
-                    padding: 12px 15px;
+                    padding: 15px 15px;
                     display: flex;
                     align-items: center;
                     cursor: pointer;
@@ -60,9 +60,12 @@
         margin: 0 15px;
         &_header {
             margin-bottom: 25px;
+            display: flex;
+            align-items: center;
             h2 {
                 font-size: 20px;
                 font-weight: bold;
+                margin-left: 35px;
             }
         }
     }
@@ -166,35 +169,49 @@
         }
         &:disabled {
             background-color: lighten($mainblue, 25%);
+            pointer-events: none;
         }
     }
 }
 //////////////////////////////////////// tweet
 .tweets {
     margin-top: 35px;
+    &__loader {
+        text-align: center;
+    }
 }
 .tweet {
     display: flex;
-    margin-bottom: 25px;
+    border: 2px solid $invisiblegrey;
+    border-top: 0;
+    padding: 15px 10px;
+    &:first-of-type {
+        border-top: 2px solid $invisiblegrey;
+    }
     &__body {
         padding-top: 3px;
         flex: 1 1 100%;
-        &_info {
+        &__info {
             display: flex;
             align-items: center;
             margin-bottom: 8px;
         }
-        &_name {
+        &__name {
             margin-right: 10px;
             font-size: 15px;
             font-weight: 700;
+            color: black;
         }
-        &_nick {
+        &__nick {
             color: $grey;
             margin-right: 10px;
         }
-        &_date {
+        &__date {
             color: $grey;
+        }
+        &__text {
+            line-height: 1.5;
+            color: black;
         }
     }
     &__actions {
@@ -288,5 +305,20 @@
             display: flex;
             align-items: center;
         }
+    }
+}
+.back__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: all 0.15s linear;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+        background-color: $greyhover;
+    }
+    &:active {
+        background-color: $greyactive;
     }
 }

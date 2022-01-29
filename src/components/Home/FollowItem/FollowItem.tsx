@@ -1,13 +1,18 @@
 import React from 'react';
+import { IUser } from '../../../types/TweetsTypes';
 
-const FollowItem = () => {
+interface IFollowItemProps {
+    item: IUser
+}
+
+const FollowItem: React.FC<IFollowItemProps> = ({ item }) => {
     return (
         <li className="follow__item">
             <div className="follow__item__info">
-                <img src="https://pbs.twimg.com/profile_images/1486424326626807809/95C-flGp_400x400.jpg" alt="user" className="small-avatar" />
+                <img src={item.avatarUrl} alt="user" className="small-avatar" />
                 <div className="follow__item__author">
-                    <div className="follow__item__name">m0NESY-</div>
-                    <div className="follow__item__nick">@m0NESY13</div>
+                    <div className="follow__item__name">{item.fullName}</div>
+                    <div className="follow__item__nick">@{item.username}</div>
                 </div>
             </div>
             <button className="follow__item__btn btn">Читать</button>

@@ -1,18 +1,22 @@
 
 export enum LoadingState {
     LOADED = "LOADED",
+    LOADING = "LOADING",
     ERROR = "ERROR",
     NEVER = "NEVER"
 }
 
 
+export interface IUser {
+    fullName: string
+    username: string
+    avatarUrl: string
+}
+
 export interface ITweet {
     text: string
-    user: {
-        fullname: string
-        username: string
-        avatarUrl: string
-    }
+    _id: string
+    user: IUser
 }
 
 export interface ITweetsState {
@@ -24,16 +28,25 @@ export interface ITweetsState {
 
 
 export enum TweetsActionTypes {
-    SET_TWEETS = "tweets/SET_TWEETS"
+    SET_TWEETS = "tweets/SET_TWEETS",
+    FETCH_TWEETS = "tweets/FETCH_TWEETS",
+    SET_LOADING = "tweets/SET_LOADING",
 }
+
 
 export interface ISetTweetsAction {
     type: TweetsActionTypes.SET_TWEETS
     payload: ITweet[]
 }
+export interface IFetchTweetsAction {
+    type: TweetsActionTypes.FETCH_TWEETS
+}
+export interface ISetTweetsLoadingAction {
+    type: TweetsActionTypes.SET_LOADING
+    payload: LoadingState
+}
 
 
 
-
-
-export type TweetsActions = ISetTweetsAction
+export type TweetsActions =
+    ISetTweetsAction | IFetchTweetsAction | ISetTweetsLoadingAction
