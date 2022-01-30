@@ -23,8 +23,8 @@ import Profile from '../../components/Profile/Profile';
 
 
 const Home = () => {
-    const dispatch = useDispatch()
-    const { items, loadingState } = useTypedSelector(state => state.tweets)
+    const dispatch=useDispatch()
+
 
     const [addTweetModal, setAddTweetModal] = React.useState<boolean>(false)
 
@@ -35,10 +35,6 @@ const Home = () => {
         setAddTweetModal(true)
     }
 
-
-    React.useEffect(() => {
-        dispatch(fetchTweetsThunk())
-    }, [])
 
     return (
         <>
@@ -75,7 +71,6 @@ const Home = () => {
                     </div>
 
 
-
                     <div className="home__main">
                         <div className="home__main_content">
                             <Routes>
@@ -85,8 +80,6 @@ const Home = () => {
                             </Routes>
                         </div>
                     </div>
-
-
 
 
                     <div className="home__right">

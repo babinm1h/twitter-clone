@@ -140,6 +140,11 @@
     &__block {
         width: 100%;
     }
+    &__error {
+        color: red;
+        display: flex;
+        align-items: center;
+    }
 }
 .form-actions {
     display: flex;
@@ -212,6 +217,7 @@
         &__text {
             line-height: 1.5;
             color: black;
+            font-size: 15px;
         }
     }
     &__actions {

@@ -1,0 +1,59 @@
+@import "../../../variables.scss";
+
+.opened-tweet {
+    &__info {
+        align-items: center;
+        display: flex;
+        margin-bottom: 15px;
+    }
+    &__text {
+        font-size: 23px;
+        line-height: 1.4;
+        margin-bottom: 30px;
+    }
+    &__fullname {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    &__nick {
+        color: $grey;
+        font-size: 15px;
+    }
+}
+.actions-opened {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &__item {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    &__icon {
+        color: $grey;
+        transition: all 0.1s linear;
+        &:hover {
+            color: $mainblue;
+        }
+    }
+}
+.stats-opened {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    &__item {
+        display: flex;
+        align-items: center;
+        color: $grey;
+        font-size: 15px;
+        margin-right: 20px;
+        span {
+            font-size: 15px;
+            color: black;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+    }
+}

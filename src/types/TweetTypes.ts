@@ -2,7 +2,7 @@ import { ITweet, LoadingState } from "./TweetsTypes";
 
 
 export interface ITweetState {
-    data: ITweet
+    data: ITweet | null
     loadingState: LoadingState
 }
 

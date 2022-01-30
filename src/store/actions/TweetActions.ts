@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { TweetApi } from "../../services/api/tweet";
+import { TweetsApi } from "../../services/api/tweets";
 import { ITweet } from "../../types/TweetsTypes";
 import { IFetchTweetDataAction, ISetTweetDataAction, TweetActions, TweetActionTypes } from "../../types/TweetTypes";
 
@@ -15,9 +15,8 @@ export const fetchTweetDataThunk = (tweetId: string) => {
     return async (dispatch: Dispatch<TweetActions>) => {
         try {
             dispatch(fetchTweetData())
-            const data = await TweetApi.fetchTweetData(tweetId)
-            console.log(data.data);
-            dispatch(setTweetData(data.data))
+            const data = await TweetsApi.fetchSingleTweet(tweetId)
+            dispatch(setTweetData(data.data[0]))
         } catch (e) {
             console.log(e);
         }

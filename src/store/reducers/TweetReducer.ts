@@ -4,7 +4,7 @@ import { ITweetState, TweetActions, TweetActionTypes } from "../../types/TweetTy
 
 
 const initialState: ITweetState = {
-    data: {} as ITweet,
+    data: null,
     loadingState: LoadingState.NEVER
 }
 
@@ -13,7 +13,7 @@ export const TweetReducer = produce((draft: Draft<ITweetState>, action: TweetAct
     switch (action.type) {
 
         case TweetActionTypes.FETCH_DATA:
-            draft.data = {} as ITweet
+            draft.data = null
             draft.loadingState = LoadingState.LOADING
             break
 

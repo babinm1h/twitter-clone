@@ -1,12 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Loader from '../../../common/Loader/Loader';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { fetchTweetsThunk } from '../../../store/actions/TweetsActions';
 import { LoadingState } from '../../../types/TweetsTypes';
 import Tweet from '../Tweet/Tweet';
 import TweetForm from '../TweetForm/TweetForm';
 
 const TweetsList = () => {
     const { items, loadingState } = useTypedSelector(state => state.tweets)
+    const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        dispatch(fetchTweetsThunk())
+    }, [])
 
     return (
         <>

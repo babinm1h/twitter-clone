@@ -31,6 +31,7 @@ export enum TweetsActionTypes {
     SET_TWEETS = "tweets/SET_TWEETS",
     FETCH_TWEETS = "tweets/FETCH_TWEETS",
     SET_LOADING = "tweets/SET_LOADING",
+    ADD_TWEET = "tweets/ADD_TWEET",
 }
 
 
@@ -45,8 +46,12 @@ export interface ISetTweetsLoadingAction {
     type: TweetsActionTypes.SET_LOADING
     payload: LoadingState
 }
+export interface IAddTweetAction {
+    payload: ITweet
+    type: TweetsActionTypes.ADD_TWEET
+}
 
 
 
 export type TweetsActions =
-    ISetTweetsAction | IFetchTweetsAction | ISetTweetsLoadingAction
+    ISetTweetsAction | IFetchTweetsAction | ISetTweetsLoadingAction | IAddTweetAction
