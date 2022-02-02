@@ -9,7 +9,9 @@
     &__text {
         font-size: 23px;
         line-height: 1.4;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
+        overflow-wrap: break-word;
+        word-break: break-all;
     }
     &__fullname {
         font-size: 17px;
@@ -19,6 +21,11 @@
     &__nick {
         color: $grey;
         font-size: 15px;
+    }
+    &__date {
+        margin-bottom: 30px;
+        color: $grey;
+        font-size: 13px;
     }
 }
 .actions-opened {

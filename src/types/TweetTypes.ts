@@ -20,6 +20,10 @@ export interface ISetTweetDataAction {
 export interface IFetchTweetDataAction {
     type: TweetActionTypes.FETCH_DATA
 }
+export interface ISetTweetLoadingAction {
+    type: TweetActionTypes.SET_LOADING
+    payload: LoadingState
+}
 
 
-export type TweetActions = IFetchTweetDataAction | ISetTweetDataAction
+export type TweetActions = IFetchTweetDataAction | ISetTweetDataAction | ISetTweetLoadingAction

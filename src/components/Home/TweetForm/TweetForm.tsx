@@ -7,8 +7,13 @@ import * as Yup from "yup"
 import "../../../pages/Home/Home.scss"
 import { useDispatch } from 'react-redux';
 import { addTweetThunk } from '../../../store/actions/TweetsActions';
+import { LoadingState } from '../../../types/TweetsTypes';
 
-const TweetForm = () => {
+interface ITweetFormProps {
+    loadingState?: LoadingState
+}
+
+const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -49,14 +54,14 @@ const TweetForm = () => {
                             </li>
                         </ul>
                         <button className="form-actions__btn btn" type="submit"
-                            disabled={!formik.values.text || !!formik.errors.text}>
+                            disabled={!formik.values.text || !!formik.errors.text || loadingState === LoadingState.LOADING}>
                             Твитнуть
                         </button>
                     </div>
                 </div>
             </form>
 
-            <div className="tweet-form__error"><BiErrorCircle size={20} /> Произошла ошибка</div>
+            {loadingState === LoadingState.ERROR && <div className="tweet-form__error"><BiErrorCircle size={20} /><p>Произошла ошибка</p></div>}
         </>
     );
 };

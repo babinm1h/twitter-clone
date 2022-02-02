@@ -13,7 +13,7 @@ const TweetsList = () => {
 
     React.useEffect(() => {
         dispatch(fetchTweetsThunk())
-    }, [])
+    }, [dispatch])
 
     return (
         <>
@@ -21,7 +21,7 @@ const TweetsList = () => {
                 <h2>Главная</h2>
             </div>
 
-            <TweetForm />
+            <TweetForm loadingState={loadingState} />
 
             <div className="tweets">
                 <ul className="tweets-list">

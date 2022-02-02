@@ -1,3 +1,4 @@
+import { LoadingState } from "./TweetsTypes";
 
 export interface ITrendItem {
     name: string
@@ -24,9 +25,10 @@ export interface ISetTrendsAction {
 export interface IFetchTrendAction {
     type: TrendsActionTypes.FETCH_TRENDS
 }
-export interface ISetTrendsLoadingAction{
-    type:TrendsActionTypes.SET_LOADING
+export interface ISetTrendsLoadingAction {
+    type: TrendsActionTypes.SET_LOADING
+    payload: LoadingState
 }
 
 
-export type TrendsActions = IFetchTrendAction | ISetTrendsAction
+export type TrendsActions = IFetchTrendAction | ISetTrendsAction | ISetTrendsLoadingAction

@@ -1,9 +1,11 @@
 
+
 export enum LoadingState {
     LOADED = "LOADED",
     LOADING = "LOADING",
     ERROR = "ERROR",
-    NEVER = "NEVER"
+    NEVER = "NEVER",
+    SUCCESS = "SUCCESS"
 }
 
 
@@ -16,6 +18,7 @@ export interface IUser {
 export interface ITweet {
     text: string
     _id: string
+    createdAt: string
     user: IUser
 }
 

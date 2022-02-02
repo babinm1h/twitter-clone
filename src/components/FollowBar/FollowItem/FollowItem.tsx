@@ -1,15 +1,17 @@
 import React from 'react';
 import { IUser } from '../../../types/TweetsTypes';
+import { IDBUser } from '../../../types/UserTypes';
+import userImg from "../../../img/Home/defaultUser.png"
 
 interface IFollowItemProps {
-    item: IUser
+    item: IDBUser
 }
 
 const FollowItem: React.FC<IFollowItemProps> = ({ item }) => {
     return (
         <li className="follow__item">
             <div className="follow__item__info">
-                <img src={item.avatarUrl} alt="user" className="small-avatar" />
+                <img src={userImg} alt="user" className="small-avatar" />
                 <div className="follow__item__author">
                     <div className="follow__item__name">{item.fullName}</div>
                     <div className="follow__item__nick">@{item.username}</div>

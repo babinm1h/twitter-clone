@@ -1,0 +1,128 @@
+@import "../../../variables.scss";
+.tweet {
+    display: flex;
+    border: 2px solid $invisiblegrey;
+    border-top: 0;
+    padding: 15px 10px;
+    position: relative;
+    &:first-of-type {
+        border-top: 2px solid $invisiblegrey;
+    }
+    &__body {
+        padding-top: 3px;
+        flex: 1 1 100%;
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+        &__info {
+            display: flex;
+            align-items: center;
+            @media (max-width: 1250px) {
+                display: block;
+            }
+        }
+        &__name {
+            margin-right: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            color: black;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        &__nick {
+            color: $grey;
+            margin-right: 10px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        &__date {
+            color: $grey;
+            @media (max-width: 1250px) {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+        &__text {
+            line-height: 1.5;
+            color: black;
+            font-size: 15px;
+            overflow-wrap: break-word;
+            word-break: break-all;
+        }
+        &__dots {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            cursor: pointer;
+            transition: all 0.15s linear;
+            border-radius: 50%;
+            &:hover {
+                background-color: rgba($mainblue, 0.15);
+                color: $mainblue;
+            }
+            &:active {
+                background-color: rgba($mainblue, 0.25);
+            }
+        }
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        justify-content: space-between;
+        ul {
+            flex: 1 1 100%;
+        }
+        &_item {
+            display: flex;
+            align-items: center;
+            color: $grey;
+            cursor: pointer;
+            transition: all 0.1s linear;
+            margin-right: 10px;
+            &:hover {
+                color: $mainblue;
+            }
+            span {
+                font-size: 13px;
+            }
+            &:last-of-type {
+                margin-right: 20%;
+            }
+        }
+        &_icon {
+            margin-right: 10px;
+            @media (max-width: 1000px) {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+.tweet-popup {
+    box-shadow: 0 0 2px black;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    right: 0;
+    background-color: #fff;
+    &__item {
+        padding: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        span {
+            margin-right: 10px;
+        }
+        &:hover {
+            background-color: $invisiblegrey;
+        }
+        &_red {
+            color: red;
+        }
+    }
+}

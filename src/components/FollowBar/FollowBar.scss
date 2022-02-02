@@ -1,0 +1,47 @@
+@import "../../variables.scss";
+
+.follow {
+    background-color: $invisiblegrey;
+    border-radius: 12px;
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        cursor: pointer;
+        transition: all 0.1s linear;
+        justify-content: space-between;
+        &:hover {
+            background-color: rgba(#ccc, 0.1);
+        }
+        &__name {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 5px;
+            text-overflow: ellipsis;
+            max-width: 160px;
+            overflow: hidden;
+        }
+        &__nick {
+            font-size: 15px;
+            color: $grey;
+            text-overflow: ellipsis;
+            max-width: 160px;
+            overflow: hidden;
+        }
+        &__btn {
+            background-color: black;
+            color: white;
+            margin-left: 20px;
+            &:hover {
+                background-color: lighten(black, 15%);
+            }
+            &:active {
+                background-color: lighten(black, 25%);
+            }
+        }
+        &__info {
+            display: flex;
+            align-items: center;
+        }
+    }
+}

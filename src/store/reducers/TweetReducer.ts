@@ -22,6 +22,10 @@ export const TweetReducer = produce((draft: Draft<ITweetState>, action: TweetAct
             draft.loadingState = LoadingState.LOADED
             break
 
+        case TweetActionTypes.SET_LOADING:
+            draft.loadingState = action.payload
+            break
+
         default:
             return draft
     }

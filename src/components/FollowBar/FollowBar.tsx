@@ -4,7 +4,8 @@ import Loader from '../../common/Loader/Loader';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchFollowBarUsersThunk } from '../../store/actions/FollowBarActions';
 import { LoadingState } from '../../types/TweetsTypes';
-import FollowItem from '../Home/FollowItem/FollowItem';
+import FollowItem from './FollowItem/FollowItem';
+import "./FollowBar.scss"
 
 const FollowBar = () => {
     const dispatch = useDispatch()

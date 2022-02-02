@@ -6,7 +6,7 @@ import userImg from "../../img/Home/defaultUser.png"
 import { FaRegComment } from "react-icons/fa"
 import { FiRepeat } from "react-icons/fi"
 import Tweet from '../../components/Home/Tweet/Tweet';
-import FollowItem from '../../components/Home/FollowItem/FollowItem';
+import FollowItem from '../../components/FollowBar/FollowItem/FollowItem';
 import TweetForm from '../../components/Home/TweetForm/TweetForm';
 import Modal from '../../common/Modal/Modal';
 import { useDispatch } from 'react-redux';
@@ -14,17 +14,16 @@ import { fetchTweetsThunk } from '../../store/actions/TweetsActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import Loader from '../../common/Loader/Loader';
 import { LoadingState } from '../../types/TweetsTypes';
-import TrendsBar from '../../components/Home/TrendsBar/TrendsBar';
+import TrendsBar from '../../components/TrendsBar/TrendsBar';
 import FollowBar from '../../components/FollowBar/FollowBar';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import TweetsList from '../../components/Home/TweetsList/TweetsList';
-import TweetPage from '../../components/Home/TweetPage/TweetPage';
+import TweetPage from '../../components/Home/OpenedTweet/OpenedTweet';
 import Profile from '../../components/Profile/Profile';
-
+import { BiLogOut } from "react-icons/bi"
+import AuthUser from '../../components/AuthUser/AuthUser';
 
 const Home = () => {
-    const dispatch=useDispatch()
-
 
     const [addTweetModal, setAddTweetModal] = React.useState<boolean>(false)
 
@@ -68,6 +67,8 @@ const Home = () => {
                                 <BsFillPencilFill className="tweet-button__icon" size={18} />
                             </button>
                         </div>
+
+                        <AuthUser />
                     </div>
 
 

@@ -2,9 +2,8 @@ import React from 'react';
 import "./LoginPage.scss"
 import loginBg from "../../img/LoginPage/bg.png"
 import { BsTwitter } from "react-icons/bs"
-import Modal from '../../common/Modal/Modal';
-import * as Yup from "yup"
-import { Field, Form, Formik, useFormik } from "formik"
+import SignUpModal from '../../components/LoginPage/SignUpForm/SignUpModal';
+import LoginModal from '../../components/LoginPage/LoginModal/LoginModal';
 
 const navItemsArr = [
     { title: "О нас", link: "https://about.twitter.com/en" },
@@ -26,6 +25,7 @@ const navItemsArr = [
 ]
 
 
+
 const LoginPage = () => {
     const [activeSignUp, setActiveSignUp] = React.useState<boolean>(false)
     const [activeLogin, setActivelogin] = React.useState<boolean>(false)
@@ -43,54 +43,6 @@ const LoginPage = () => {
         setActivelogin(false)
     }
 
-
-    const formikLogin = useFormik({
-        initialValues: {
-            email: "",
-            password: ""
-        },
-
-
-        validationSchema: Yup.object().shape({
-            email: Yup.string().email("Введите свой e-mail").required("Введите свой e-mail"),
-            password: Yup.string()
-                .min(6, "Минимальная длина пароля 6 символов")
-                .max(24, "Максимальная длина пароля 24 символа")
-                .required("Введите пароль")
-        }),
-
-
-        onSubmit: (values) => {
-            console.log(values);
-
-        }
-    })
-
-    const formikSignUp = useFormik({
-        initialValues: {
-            name: "",
-            email2: "",
-            password2: ""
-        },
-
-
-        validationSchema: Yup.object().shape({
-            name: Yup.string()
-                .min(2, "Минимальная длина 2 символа")
-                .max(45, "Максимальная длина 45 символов")
-                .required("Обязательное поле"),
-            email2: Yup.string().email("Введите правильный e-mail").required("Обязательное поле"),
-            password2: Yup.string()
-                .min(6, "Минимальная длина пароля 6 символов")
-                .max(24, "Максимальная длина пароля 24 символа")
-                .required("Обязательное поле")
-        }),
-
-
-        onSubmit: (values) => {
-            console.log(values);
-        }
-    })
 
 
     return (
@@ -137,76 +89,9 @@ const LoginPage = () => {
             </div>
 
 
-            {activeSignUp && <Modal title="Создайте учетную запись" onClose={closeSignUp}>
-                <form onSubmit={formikSignUp.handleSubmit}>
-                    <input type="text" name="name"
-                        onChange={formikSignUp.handleChange}
-                        placeholder="Ваше имя"
-                        value={formikSignUp.values.name}
-                        className={formikSignUp.errors.name ? "login-input error" : "login-input"} />
-                    {formikSignUp.errors.name &&
-                        <div className="form-error">
-                            {formikSignUp.errors.name}
-                        </div>}
+            {activeSignUp && <SignUpModal closeSignUp={closeSignUp} />}
 
-                    <input type="email" name="email2"
-                        onChange={formikSignUp.handleChange}
-                        placeholder="Ваш e-mail"
-                        value={formikSignUp.values.email2}
-                        className={formikSignUp.errors.email2 ? "login-input error" : "login-input"} />
-                    {formikSignUp.errors.email2 &&
-                        <div className="form-error">
-                            {formikSignUp.errors.email2}
-                        </div>}
-
-                    <input type="password" name="password2"
-                        onChange={formikSignUp.handleChange}
-                        placeholder="Пароль"
-                        value={formikSignUp.values.password2}
-                        className={formikSignUp.errors.password2 ? "login-input error"
-                            : "login-input"} />
-                    {formikSignUp.errors.password2 &&
-                        <div className="form-error">
-                            {formikSignUp.errors.password2}
-                        </div>}
-
-                    <button type="submit" className="form-button"
-                        disabled={!!formikSignUp.errors.email2 || !!formikSignUp.errors.password2 || !!formikSignUp.errors.name}>
-                        Зарегистрироваться
-                    </button>
-                </form>
-            </Modal>}
-
-
-
-            {activeLogin && <Modal title="Вход в Твиттер" onClose={closeLogin}>
-                <form onSubmit={formikLogin.handleSubmit}>
-                    <input type="email"
-                        name="email" onChange={formikLogin.handleChange}
-                        placeholder="E-mail"
-                        value={formikLogin.values.email}
-                        className={formikLogin.errors.email ? "login-input error" : "login-input"} />
-                    {formikLogin.errors.email &&
-                        <div className="form-error">
-                            {formikLogin.errors.email}
-                        </div>}
-
-                    <input type="password"
-                        name="password" onChange={formikLogin.handleChange}
-                        placeholder="Пароль"
-                        value={formikLogin.values.password}
-                        className={formikLogin.errors.password ? "login-input error" : "login-input"} />
-                    {formikLogin.errors.password &&
-                        <div className="form-error">
-                            {formikLogin.errors.password}
-                        </div>}
-
-                    <button type="submit" className="form-button"
-                        disabled={!!formikLogin.errors.email || !!formikLogin.errors.password}>
-                        Войти
-                    </button>
-                </form>
-            </Modal>}
+            {activeLogin && <LoginModal closeLogin={closeLogin} />}
 
         </div>
     );

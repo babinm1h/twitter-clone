@@ -24,6 +24,10 @@ export const followBarReducer = produce((draft, action: FollowBarActions) => {
             draft.loadingState = LoadingState.LOADED
             break
 
+        case FollowBarActionTypes.SET_LOADING:
+            draft.loadingState = action.payload
+            break
+
         default:
             return draft
     }

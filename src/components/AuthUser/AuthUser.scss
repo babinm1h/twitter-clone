@@ -1,0 +1,29 @@
+@import "../../variables.scss";
+
+.logout-modal {
+    &__text {
+        font-size: 15px;
+        color: $grey;
+        line-height: 1.5;
+    }
+    &__btn {
+        width: 100%;
+        &.white {
+            border: 1px solid black;
+            color: black;
+            background-color: #fff;
+            margin-top: 15px;
+            &:hover {
+                background-color: rgba(black, 0.1);
+            }
+        }
+        &.black {
+            margin-top: 50px;
+            color: white;
+            background-color: black;
+            &:hover {
+                background-color: lighten(#000000, 14%);
+            }
+        }
+    }
+}

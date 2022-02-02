@@ -186,3 +186,13 @@
         color: red;
     }
 }
+.error-note {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    color: red;
+    span {
+        font-size: 18px;
+        margin-left: 5px;
+    }
+}

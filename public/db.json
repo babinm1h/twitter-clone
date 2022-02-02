@@ -19,24 +19,6 @@
       }
     },
     {
-      "_id": "61f3b7e127a005bfaa685f00",
-      "text": "some text, hello w0rld",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
-      "_id": "61f3b7e1a5fb0750aed3ee65",
-      "text": "some text, hello w0rld",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
       "_id": "61f3b7e1dcf5f391227b2d03",
       "text": "3:0 Today. Im so happy. Great work from us. This is just the beginning",
       "user": {
@@ -46,55 +28,9 @@
       }
     },
     {
-      "_id": "61f3b7e1f38eb2f7812c9efc",
-      "text": "some text, hello w0rld",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
-      "_id": "61f3b7e1e9ccfa105967437c",
-      "text": "some text, hello w0rld",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
-      "_id": "61f3b7e1289ca051d9e301e4",
-      "text": "some text, hello w0rld",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
-      "_id": "61f3b7e135f8e611f3fd816e",
-      "text": "some text, hello w0rld",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
-      "id": "777",
-      "_id": "61f3b7e11a91ba328c7ec9a7",
-      "text": "gagaga",
-      "user": {
-        "fullName": "Kevin Rabier",
-        "username": "misutaaacsgod",
-        "avatarUrl": "https://img-cdn.hltv.org/playerbodyshot/LdHiQd529230U-hCMYRU4b.png?bg=3e4c54&h=200&ixlib=java-2.1.0&rect=128%2C19%2C455%2C455&w=200&s=7a25a2d02a8414351f6007ca11d5a7c6"
-      }
-    },
-    {
-      "id": "7778",
-      "_id": "61f3b7e11a91ba328c7ec9a7",
-      "text": "77",
+      "id": "0.05629951425779711",
+      "_id": "61f3b7e11a91ba328c7ec9a711",
+      "text": "fafh",
       "user": {
         "fullName": "m1sha",
         "username": "misutaaacsgod",
@@ -102,8 +38,8 @@
       }
     },
     {
-      "id": "0.48277678981679006",
-      "_id": "61f3b7e11a91ba328c7ec9a7",
+      "id": "0.18710926484931023",
+      "_id": "0.17686665069874818",
       "text": "ffa",
       "user": {
         "fullName": "m1sha",
@@ -112,9 +48,9 @@
       }
     },
     {
-      "id": "0.008991528730467158",
-      "_id": "61f3b7e11a91ba328c7ec9a7",
-      "text": "ff",
+      "id": "0.3725360568064453",
+      "_id": "0.1001887794995131",
+      "text": "ffa",
       "user": {
         "fullName": "m1sha",
         "username": "misutaaacsgod",
@@ -122,9 +58,9 @@
       }
     },
     {
-      "id": "0.08435801371660911",
-      "_id": "61f3b7e11a91ba328c7ec9a7",
-      "text": "ffa",
+      "id": "0.7932611286047548",
+      "_id": "0.8608308315452524",
+      "text": "gl 77",
       "user": {
         "fullName": "m1sha",
         "username": "misutaaacsgod",

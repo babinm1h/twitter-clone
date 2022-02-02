@@ -22,6 +22,9 @@ export const trendsReducer = produce((draft: Draft<ITrendsState>, action: Trends
             draft.loadingState = LoadingState.LOADING
             break
 
+        case TrendsActionTypes.SET_LOADING:
+            draft.loadingState = action.payload
+            break
 
         default:
             return draft

@@ -1,8 +1,9 @@
 import { IUser, LoadingState } from "./TweetsTypes";
+import { IDBUser } from "./UserTypes";
 
 
 export interface IFollowBarState {
-    items: IUser[]
+    items: IDBUser[]
     loadingState: LoadingState
 }
 
@@ -18,8 +19,13 @@ export interface IFetchFollowBarUsersAction {
 }
 export interface ISetFollowBarUsersAction {
     type: FollowBarActionTypes.SET_USERS
-    payload: IUser[]
+    payload: IDBUser[]
+}
+export interface ISetFollowBarLoadingAction {
+    type: FollowBarActionTypes.SET_LOADING
+    payload: LoadingState
 }
 
 
-export type FollowBarActions = ISetFollowBarUsersAction | IFetchFollowBarUsersAction
+export type FollowBarActions =
+    ISetFollowBarUsersAction | IFetchFollowBarUsersAction | ISetFollowBarLoadingAction

@@ -10,7 +10,9 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { fetchTweetDataThunk } from '../../../store/actions/TweetActions';
 import { LoadingState } from '../../../types/TweetsTypes';
 import BackButton from '../../BackButton/BackButton';
-import "./TweetPage.scss"
+import "./OpenedTweet.scss"
+import userImg from "../../../img/Home/defaultUser.png"
+import { formatDate } from '../../../utils/formatDate';
 
 const TweetPage = () => {
     const dispatch = useDispatch()
@@ -36,7 +38,7 @@ const TweetPage = () => {
             </div>
             <div className="opened-tweet">
                 <div className="opened-tweet__info">
-                    <img src={data.user.avatarUrl} alt="user" className="small-avatar" />
+                    <img src={data.user.avatarUrl || userImg} alt="user" className="small-avatar" />
                     <div className="opened-tweet__author">
                         <div className="opened-tweet__fullname">{data.user.fullName}</div>
                         <div className="opened-tweet__nick">@{data.user.username}</div>
@@ -45,6 +47,8 @@ const TweetPage = () => {
                 <div className="opened-tweet__text">
                     {data.text}
                 </div>
+
+                <div className="opened-tweet__date">Создан: {formatDate(new Date(data.createdAt))}</div>
 
                 <ul className="opened-tweet__stats stats-opened">
                     <li className="stats-opened__item">
