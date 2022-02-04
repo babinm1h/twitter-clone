@@ -1,30 +1,18 @@
 import React from 'react';
 import "./Home.scss"
-import { BsTwitter, BsImage, BsUpload, BsFillPencilFill } from "react-icons/bs"
-import { AiOutlineHome, AiOutlineSearch, AiOutlineHeart, AiOutlineMail } from "react-icons/ai"
-import userImg from "../../img/Home/defaultUser.png"
-import { FaRegComment } from "react-icons/fa"
-import { FiRepeat } from "react-icons/fi"
-import Tweet from '../../components/Home/Tweet/Tweet';
-import FollowItem from '../../components/FollowBar/FollowItem/FollowItem';
+import { BsTwitter, BsFillPencilFill } from "react-icons/bs"
+import { AiOutlineHome, AiOutlineSearch, AiOutlineMail } from "react-icons/ai"
 import TweetForm from '../../components/Home/TweetForm/TweetForm';
 import Modal from '../../common/Modal/Modal';
-import { useDispatch } from 'react-redux';
-import { fetchTweetsThunk } from '../../store/actions/TweetsActions';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import Loader from '../../common/Loader/Loader';
-import { LoadingState } from '../../types/TweetsTypes';
 import TrendsBar from '../../components/TrendsBar/TrendsBar';
 import FollowBar from '../../components/FollowBar/FollowBar';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import TweetsList from '../../components/Home/TweetsList/TweetsList';
 import TweetPage from '../../components/Home/OpenedTweet/OpenedTweet';
 import Profile from '../../components/Profile/Profile';
-import { BiLogOut } from "react-icons/bi"
 import AuthUser from '../../components/AuthUser/AuthUser';
 
 const Home = () => {
-
     const [addTweetModal, setAddTweetModal] = React.useState<boolean>(false)
 
     const onCloseModal = () => {
@@ -33,7 +21,6 @@ const Home = () => {
     const onOpenModal = () => {
         setAddTweetModal(true)
     }
-
 
     return (
         <>

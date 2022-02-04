@@ -1,14 +1,15 @@
 import React from 'react';
 import { FaRegComment } from "react-icons/fa"
 import { FiRepeat } from "react-icons/fi"
-import { BsTwitter, BsImage, BsUpload, BsTrash, BsPencil } from "react-icons/bs"
-import { AiOutlineHome, AiOutlineSearch, AiOutlineHeart } from "react-icons/ai"
+import { BsUpload } from "react-icons/bs"
+import { AiOutlineHeart } from "react-icons/ai"
 import { ITweet } from '../../../types/TweetsTypes';
 import { NavLink } from 'react-router-dom';
 import userImg from "../../../img/Home/defaultUser.png"
 import { formatDate } from '../../../utils/formatDate';
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import "./Tweet.scss"
+import TweetModal from './TweetModal/TweetModal';
 
 
 interface ITweetProps {
@@ -84,18 +85,7 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
                 </div>
 
 
-                {popup && <div className="tweet-popup" ref={popupRef}>
-                    <ul className="tweet-popup__list">
-                        <li className="tweet-popup__item tweet-popup__item_red">
-                            <span><BsTrash size={17} /></span>
-                            <p>Удалить</p>
-                        </li>
-                        <li className="tweet-popup__item">
-                            <span><BsPencil size={17} /></span>
-                            <p>Редактировать</p>
-                        </li>
-                    </ul>
-                </div>}
+                {popup && <div ref={popupRef}><TweetModal /></div>}
             </li>
         </>
     );

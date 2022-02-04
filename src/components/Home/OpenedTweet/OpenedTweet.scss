@@ -5,6 +5,7 @@
         align-items: center;
         display: flex;
         margin-bottom: 15px;
+        position: relative;
     }
     &__text {
         font-size: 23px;
@@ -26,6 +27,25 @@
         margin-bottom: 30px;
         color: $grey;
         font-size: 13px;
+    }
+    &__dots {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        cursor: pointer;
+        transition: all 0.15s linear;
+        border-radius: 50%;
+        &:hover {
+            background-color: rgba($mainblue, 0.15);
+            color: $mainblue;
+        }
+        &:active {
+            background-color: rgba($mainblue, 0.25);
+        }
+    }
+    &__author {
+        flex: 1 1 auto;
     }
 }
 .actions-opened {

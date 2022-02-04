@@ -1,24 +1,24 @@
 import produce, { Draft } from "immer"
+import { ISignUpState, SignUpActions, SignUpActionTypes } from "../../types/SignUpTypes"
 import { LoadingState } from "../../types/TweetsTypes"
-import { IUserState, UserActions, UserActionTypes } from "../../types/UserTypes"
 
 
 
-const initialState: IUserState = {
+const initialState: ISignUpState = {
     data: undefined,
-    loadingState: LoadingState.NEVER,
+    loadingState: LoadingState.NEVER
 }
 
 
-export const userReducer = produce((draft: Draft<IUserState>, action: UserActions) => {
+export const signUpReducer = produce((draft: Draft<ISignUpState>, action: SignUpActions) => {
     switch (action.type) {
 
-        case UserActionTypes.SET_USER_DATA:
+        case SignUpActionTypes.SET_SIGNUP_DATA:
             draft.data = action.payload
             draft.loadingState = LoadingState.SUCCESS
             break
 
-        case UserActionTypes.SET_LOADING:
+        case SignUpActionTypes.SET_LOADING:
             draft.loadingState = action.payload
             break
 

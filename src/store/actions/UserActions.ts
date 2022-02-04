@@ -11,7 +11,6 @@ export const setUserData = (payload: IDBUser): ISetUserDataAction => ({ type: Us
 export const setUserLoading = (payload: LoadingState): ISetUserLoadingAction => ({ type: UserActionTypes.SET_LOADING, payload })
 
 
-
 // ============================================ THUNKS
 
 export const login = (payload: ILoginData) => {
@@ -34,7 +33,6 @@ export const checkAuth = () => {
             dispatch(setUserLoading(LoadingState.LOADING))
             const res = await AuthApi.getMe()
             dispatch(setUserData(res.data.data))
-            console.log("ffa");
         } catch (err) {
             dispatch(setUserLoading(LoadingState.ERROR))
         }

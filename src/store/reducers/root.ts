@@ -1,17 +1,19 @@
 import { combineReducers } from "redux";
 import { followBarReducer } from "./FollowBarReducer";
+import { signUpReducer } from "./SignUpReducer";
 import { trendsReducer } from "./TrendsReducer";
-import { TweetReducer } from "./TweetReducer";
-import { TweetsReducer } from "./TweetsReducer";
+import { tweetReducer } from "./TweetReducer";
+import { tweetsReducer } from "./TweetsReducer";
 import { userReducer } from "./UserReducer";
 
 
 export const rootReducer = combineReducers({
-    tweets: TweetsReducer,
+    tweets: tweetsReducer,
     trends: trendsReducer,
     followBar: followBarReducer,
-    tweet: TweetReducer,
-    user: userReducer
+    tweet: tweetReducer,
+    user: userReducer,
+    signUp: signUpReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

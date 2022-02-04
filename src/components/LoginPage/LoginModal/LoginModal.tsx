@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../../store/actions/UserActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { LoadingState } from '../../../types/TweetsTypes';
+import { useNavigate } from 'react-router';
 
 
 export interface ILoginData {
@@ -20,6 +21,7 @@ interface ILoginModalProps {
 }
 
 const LoginModal: React.FC<ILoginModalProps> = ({ closeLogin }) => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { loadingState, data } = useTypedSelector(state => state.user)
 
@@ -35,7 +37,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({ closeLogin }) => {
             email: Yup.string().email("Введите свой e-mail").required("Введите свой e-mail"),
             password: Yup.string()
                 .min(6, "Минимальная длина пароля 6 символов")
-                .max(44, "Максимальная длина пароля 44 символа")
+                .max(35, "Максимальная длина пароля 35 символа")
                 .required("Введите пароль")
         }),
 
@@ -43,7 +45,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({ closeLogin }) => {
         onSubmit: async (values: ILoginData) => {
             try {
                 dispatch(login(values))
-                closeLogin()
+                navigate("/home")
             } catch (err) {
                 console.log(err);
             }
@@ -74,7 +76,8 @@ const LoginModal: React.FC<ILoginModalProps> = ({ closeLogin }) => {
                     </div>}
 
                 <button type="submit" className="form-button"
-                    disabled={!!formikLogin.errors.email || !!formikLogin.errors.password}>
+                    disabled={!!formikLogin.errors.email || !!formikLogin.errors.password
+                        || loadingState === LoadingState.LOADING}>
                     Войти
                 </button>
 

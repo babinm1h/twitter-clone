@@ -22,7 +22,8 @@ export interface IUserState {
 
 export enum UserActionTypes {
     SET_USER_DATA = "user/SET_USER_DATA",
-    SET_LOADING = "user/SET_LOADING"
+    SET_LOADING = "user/SET_LOADING",
+    SET_ERROR = "user/SET_ERROR"
 }
 
 export interface ISetUserDataAction {
@@ -34,6 +35,7 @@ export interface ISetUserLoadingAction {
     type: UserActionTypes.SET_LOADING
     payload: LoadingState
 }
+
 
 
 export type UserActions = ISetUserDataAction | ISetUserLoadingAction

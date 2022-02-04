@@ -103,26 +103,3 @@
         }
     }
 }
-.tweet-popup {
-    box-shadow: 0 0 2px black;
-    position: absolute;
-    top: 0;
-    z-index: 2;
-    right: 0;
-    background-color: #fff;
-    &__item {
-        padding: 16px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        span {
-            margin-right: 10px;
-        }
-        &:hover {
-            background-color: $invisiblegrey;
-        }
-        &_red {
-            color: red;
-        }
-    }
-}

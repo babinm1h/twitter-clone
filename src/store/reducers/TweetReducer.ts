@@ -8,7 +8,7 @@ const initialState: ITweetState = {
     loadingState: LoadingState.NEVER
 }
 
-export const TweetReducer = produce((draft: Draft<ITweetState>, action: TweetActions) => {
+export const tweetReducer = produce((draft: Draft<ITweetState>, action: TweetActions) => {
 
     switch (action.type) {
 

@@ -5,19 +5,22 @@ import { FaRegComment } from 'react-icons/fa';
 import { FiRepeat } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import Loader from '../../../common/Loader/Loader';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { fetchTweetDataThunk } from '../../../store/actions/TweetActions';
-import { LoadingState } from '../../../types/TweetsTypes';
 import BackButton from '../../BackButton/BackButton';
 import "./OpenedTweet.scss"
 import userImg from "../../../img/Home/defaultUser.png"
 import { formatDate } from '../../../utils/formatDate';
+import { BiDotsHorizontalRounded } from "react-icons/bi"
+import TweetModal from '../Tweet/TweetModal/TweetModal';
+
+
 
 const TweetPage = () => {
-    const dispatch = useDispatch()
-    const { data, loadingState } = useTypedSelector(state => state.tweet)
 
+    const dispatch = useDispatch()
+
+    const { data, loadingState } = useTypedSelector(state => state.tweet)
     const { username, id } = useParams<string>()
 
     React.useEffect(() => {
@@ -26,9 +29,30 @@ const TweetPage = () => {
         }
     }, [id, dispatch])
 
+    const [popup, setPopup] = React.useState<boolean>(false)
+
+    const popupRef = React.useRef<HTMLDivElement | any>()
+
+    const handleClick = (e: Event) => {
+        if (popupRef.current) {
+            if (!popupRef.current.contains(e.target)) {
+                setPopup(false)
+            }
+        }
+    }
+
+    const onOpenPopup = () => {
+        setPopup(true)
+    }
+
+    React.useEffect(() => {
+        document.addEventListener("mousedown", handleClick);
+        return () => document.removeEventListener("mousedown", handleClick);
+    }, []);
+
+
 
     if (!data) return null
-
 
 
     return (
@@ -43,6 +67,9 @@ const TweetPage = () => {
                         <div className="opened-tweet__fullname">{data.user.fullName}</div>
                         <div className="opened-tweet__nick">@{data.user.username}</div>
                     </div>
+                    <BiDotsHorizontalRounded size={32} className="opened-tweet__dots"
+                        onClick={onOpenPopup} />
+                    {popup && <div ref={popupRef}><TweetModal /></div>}
                 </div>
                 <div className="opened-tweet__text">
                     {data.text}

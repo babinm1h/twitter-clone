@@ -6,20 +6,24 @@ import Home from './pages/Home/Home';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { AuthApi } from './services/api/auth';
 import { checkAuth } from './store/actions/UserActions';
+import { BsTwitter } from "react-icons/bs"
+import { LoadingState } from './types/TweetsTypes';
 
 const App = () => {
   const dispatch = useDispatch()
-  const { data } = useTypedSelector(state => state.user)
+  const { data, loadingState } = useTypedSelector(state => state.user)
   const navigate = useNavigate()
 
-
   const isAuth = !!data
+  const isReady = loadingState !== LoadingState.LOADING && loadingState !== LoadingState.NEVER
 
   React.useEffect(() => {
-    if (isAuth) {
-      // navigate("/home")
+    if (isAuth && isReady) {
+      navigate("/home")
+    } else {
+      navigate("/auth")
     }
-  }, [isAuth, navigate])
+  }, [isAuth, isReady])
 
 
   React.useEffect(() => {
@@ -28,16 +32,18 @@ const App = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [])
+  }, [dispatch])
 
 
   return (
-    <div className="wrapper">
-      <Routes>
-        <Route path="/auth" element={<LoginPage />} />
-        <Route path="/*" element={<Home />} />
-      </Routes>
-    </div>
+    !isReady
+      ? <div className="loading"><BsTwitter size={55} /></div>
+      : <div className="wrapper" >
+        <Routes>
+          <Route path="/auth" element={<LoginPage />} />
+          <Route path="/*" element={<Home />} />
+        </Routes>
+      </div>
   );
 };
 
