@@ -58,41 +58,6 @@
         }
     }
 
-    .auth-user {
-        position: fixed;
-        display: flex;
-        align-items: center;
-        bottom: 70px;
-        margin-left: 8px;
-        @media (max-width: 1000px) {
-            bottom: 30%;
-        }
-        &__name {
-            font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 5px;
-            word-break: break-all;
-        }
-        &__nick {
-            font-size: 15px;
-            color: $grey;
-            word-break: break-all;
-        }
-        &__content {
-            margin-right: 20px;
-            display: flex;
-            align-items: center;
-            @media (max-width: 1000px) {
-                display: none;
-            }
-            span {
-                cursor: pointer;
-            }
-        }
-        &__info {
-            margin-right: 30px;
-        }
-    }
     &__main {
         flex: 1 1 auto;
         margin: 0 15px;
@@ -162,63 +127,6 @@
         display: none;
         @media (max-width: 1000px) {
             display: block;
-        }
-    }
-}
-
-.tweet-form {
-    display: flex;
-    &__area {
-        width: 100%;
-        font-size: 20px;
-        resize: none;
-        height: auto;
-        margin-top: 5px;
-    }
-    img {
-        margin-right: 15px;
-    }
-    &__block {
-        width: 100%;
-    }
-    &__error {
-        color: red;
-        display: flex;
-        align-items: center;
-        p {
-            margin-left: 5px;
-        }
-    }
-}
-.form-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
-    ul {
-        display: flex;
-        align-items: center;
-    }
-    &__item {
-        margin-right: 15px;
-        .action-icon {
-            color: $mainblue;
-            cursor: pointer;
-        }
-    }
-    &__btn {
-        background-color: $mainblue;
-        color: white;
-        font-weight: bold;
-        &:hover {
-            background-color: darken($mainblue, 7%);
-        }
-        &:active {
-            background-color: darken($mainblue, 20%);
-        }
-        &:disabled {
-            background-color: lighten($mainblue, 25%);
-            pointer-events: none;
         }
     }
 }

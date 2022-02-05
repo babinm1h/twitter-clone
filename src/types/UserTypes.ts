@@ -23,19 +23,22 @@ export interface IUserState {
 export enum UserActionTypes {
     SET_USER_DATA = "user/SET_USER_DATA",
     SET_LOADING = "user/SET_LOADING",
-    SET_ERROR = "user/SET_ERROR"
+    SET_ERROR = "user/SET_ERROR",
+    LOGOUT = "user/LOGOUT",
 }
 
 export interface ISetUserDataAction {
     type: UserActionTypes.SET_USER_DATA
     payload: IDBUser
 }
-
 export interface ISetUserLoadingAction {
     type: UserActionTypes.SET_LOADING
     payload: LoadingState
 }
+export interface ILogoutAction {
+    type: UserActionTypes.LOGOUT
+}
 
 
 
-export type UserActions = ISetUserDataAction | ISetUserLoadingAction
+export type UserActions = ISetUserDataAction | ISetUserLoadingAction | ILogoutAction

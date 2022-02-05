@@ -1,0 +1,90 @@
+@import "../../../variables.scss";
+
+.tweet-form {
+    display: flex;
+    &__area {
+        width: 100%;
+        font-size: 20px;
+        resize: none;
+        height: auto;
+        margin-top: 5px;
+    }
+    img {
+        margin-right: 15px;
+    }
+    &__block {
+        width: 100%;
+    }
+    &__error {
+        color: red;
+        display: flex;
+        align-items: center;
+        p {
+            margin-left: 5px;
+        }
+    }
+}
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    ul {
+        display: flex;
+        align-items: center;
+    }
+    &__item {
+        margin-right: 15px;
+        .action-icon {
+            color: $mainblue;
+            cursor: pointer;
+        }
+    }
+    &__btn {
+        background-color: $mainblue;
+        color: white;
+        font-weight: bold;
+        &:hover {
+            background-color: darken($mainblue, 7%);
+        }
+        &:active {
+            background-color: darken($mainblue, 20%);
+        }
+        &:disabled {
+            background-color: lighten($mainblue, 25%);
+            pointer-events: none;
+        }
+    }
+}
+
+.img-list {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    &__item {
+        margin-right: 5px;
+        margin-bottom: 7px;
+        width: 150px;
+        position: relative;
+        height: 150px;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        img {
+            width: 100%;
+            height: auto;
+        }
+        &_remove {
+            position: absolute;
+            z-index: 2;
+            color: rgba(red, 0.5);
+            cursor: pointer;
+            transition: all 0.1s linear;
+            &:hover {
+                color: rgba(red, 0.8);
+            }
+        }
+    }
+}

@@ -102,4 +102,16 @@
             }
         }
     }
+    &__images {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        &__item {
+            width: 200px;
+            height: 200px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
 }

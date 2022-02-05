@@ -4,7 +4,7 @@ import { BsUpload } from 'react-icons/bs';
 import { FaRegComment } from 'react-icons/fa';
 import { FiRepeat } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { fetchTweetDataThunk } from '../../../store/actions/TweetActions';
 import BackButton from '../../BackButton/BackButton';
@@ -13,25 +13,20 @@ import userImg from "../../../img/Home/defaultUser.png"
 import { formatDate } from '../../../utils/formatDate';
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import TweetModal from '../Tweet/TweetModal/TweetModal';
+import { deleteTweetThunk } from '../../../store/actions/TweetsActions';
 
 
 
 const TweetPage = () => {
+    const [popup, setPopup] = React.useState<boolean>(false)
+    const popupRef = React.useRef<HTMLDivElement | any>()
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
-
     const { data, loadingState } = useTypedSelector(state => state.tweet)
     const { username, id } = useParams<string>()
 
-    React.useEffect(() => {
-        if (id) {
-            dispatch(fetchTweetDataThunk(id))
-        }
-    }, [id, dispatch])
-
-    const [popup, setPopup] = React.useState<boolean>(false)
-
-    const popupRef = React.useRef<HTMLDivElement | any>()
 
     const handleClick = (e: Event) => {
         if (popupRef.current) {
@@ -41,9 +36,24 @@ const TweetPage = () => {
         }
     }
 
+    const handleDeleteTweet = () => {
+        if (window.confirm("Удалить твит?")) {
+            if (data) {
+                dispatch(deleteTweetThunk(data._id))
+                navigate("/home")
+            }
+        }
+    }
+
     const onOpenPopup = () => {
         setPopup(true)
     }
+
+    React.useEffect(() => {
+        if (id) {
+            dispatch(fetchTweetDataThunk(id))
+        }
+    }, [id, dispatch])
 
     React.useEffect(() => {
         document.addEventListener("mousedown", handleClick);
@@ -69,7 +79,9 @@ const TweetPage = () => {
                     </div>
                     <BiDotsHorizontalRounded size={32} className="opened-tweet__dots"
                         onClick={onOpenPopup} />
-                    {popup && <div ref={popupRef}><TweetModal /></div>}
+                    {popup && <div ref={popupRef}>
+                        <TweetModal handleDeleteTweet={handleDeleteTweet} />
+                    </div>}
                 </div>
                 <div className="opened-tweet__text">
                     {data.text}

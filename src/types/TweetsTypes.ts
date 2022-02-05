@@ -20,6 +20,7 @@ export interface ITweet {
     _id: string
     createdAt: string
     user: IUser
+    images?: string[]
 }
 
 export interface ITweetsState {
@@ -35,6 +36,7 @@ export enum TweetsActionTypes {
     FETCH_TWEETS = "tweets/FETCH_TWEETS",
     SET_LOADING = "tweets/SET_LOADING",
     ADD_TWEET = "tweets/ADD_TWEET",
+    DELETE_TWEET = "tweets/DELETE_TWEET",
 }
 
 
@@ -53,8 +55,11 @@ export interface IAddTweetAction {
     payload: ITweet
     type: TweetsActionTypes.ADD_TWEET
 }
-
+export interface IDeleteTweetAction {
+    payload: string
+    type: TweetsActionTypes.DELETE_TWEET
+}
 
 
 export type TweetsActions =
-    ISetTweetsAction | IFetchTweetsAction | ISetTweetsLoadingAction | IAddTweetAction
+    ISetTweetsAction | IFetchTweetsAction | ISetTweetsLoadingAction | IAddTweetAction | IDeleteTweetAction

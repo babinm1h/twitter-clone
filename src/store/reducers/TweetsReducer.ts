@@ -30,7 +30,9 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
             draft.items.unshift(action.payload)
             break
 
-
+        case TweetsActionTypes.DELETE_TWEET:
+            draft.items = draft.items.filter(i => i._id !== action.payload)
+            break
 
 
         default:

@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { BsImage, BsEmojiSmile } from 'react-icons/bs';
+import { AiFillCloseCircle } from "react-icons/ai"
 import { BiErrorCircle } from "react-icons/bi"
 import userImg from "../../../img/Home/defaultUser.png"
 import * as Yup from "yup"
@@ -8,22 +9,44 @@ import "../../../pages/Home/Home.scss"
 import { useDispatch } from 'react-redux';
 import { addTweetThunk } from '../../../store/actions/TweetsActions';
 import { LoadingState } from '../../../types/TweetsTypes';
+import UploadImg from './UploadImg/UploadImg';
+import "./TweetForm.scss"
+import { uploadImg } from '../../../utils/uploadImg';
+import { TweetsApi } from '../../../services/api/tweets';
 
 interface ITweetFormProps {
     loadingState?: LoadingState
 }
 
+export interface ImgObj {
+    blobUrl: string
+    file: File
+}
+
 const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
+    const [images, setImages] = React.useState<ImgObj[]>([])
+
     const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
-            text: ""
+            text: "",
+            images: images
         },
 
-        onSubmit: (values) => {
-            dispatch(addTweetThunk(values.text))
-            values.text = ""
+        onSubmit: async (values, { resetForm }) => {
+            values.images = images
+            const result = images.map(i => i.blobUrl)
+
+            const files = images.map(i => i.file)
+            if (values.images.length > 0) {
+                const res = await uploadImg(files)
+                console.log(res);
+            }
+
+            dispatch(addTweetThunk({ text: values.text, images: result }))
+            resetForm()
+            setImages([])
         },
 
         validationSchema: Yup.object().shape({
@@ -47,17 +70,19 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
                     <div className="form-actions">
                         <ul>
                             <li className="form-actions__item">
-                                <BsImage className="action-icon" size={18} />
+                                <UploadImg setImages={setImages} images={images} />
                             </li>
                             <li className="form-actions__item">
                                 <BsEmojiSmile className="action-icon" size={18} />
                             </li>
                         </ul>
                         <button className="form-actions__btn btn" type="submit"
-                            disabled={!formik.values.text || !!formik.errors.text || loadingState === LoadingState.LOADING}>
+                            disabled={!formik.values.text || !!formik.errors.text
+                                || loadingState === LoadingState.LOADING}>
                             Твитнуть
                         </button>
                     </div>
+                    <UploadImgList images={images.map(i => i.blobUrl)} setImages={setImages} />
                 </div>
             </form>
 
@@ -67,3 +92,30 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
 };
 
 export default TweetForm;
+
+
+
+
+
+interface IUploadImgListProps {
+    images: string[]
+    setImages?: React.Dispatch<React.SetStateAction<ImgObj[]>>
+}
+
+export const UploadImgList: React.FC<IUploadImgListProps> = ({ images, setImages }) => {
+
+    const onRemoveUpload = (url: string) => {
+        setImages!(prev => prev.filter(img => img.blobUrl !== url))
+    }
+
+    return (
+        <div className="img-list">
+            {images && images.map(url => <div key={url} className="img-list__item"
+            >
+                <AiFillCloseCircle size={22} className="img-list__item_remove"
+                    onClick={() => onRemoveUpload(url)} />
+                <img src={url} alt="img" />
+            </div>)}
+        </div>
+    )
+}

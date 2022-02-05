@@ -19,7 +19,19 @@ export class TweetsApi {
         return axios.get<ITweetsResponse<ITweet>>(`/tweets/${tweetId}`)
     }
 
-    static async addTweet(text: string): Promise<AxiosResponse<ITweetsResponse<ITweet>>> {
-        return axios.post<ITweetsResponse<ITweet>>("/tweets", { text })
+    static async addTweet(payload: { text: string, images: string[] }): Promise<AxiosResponse<ITweetsResponse<ITweet>>> {
+        return axios.post<ITweetsResponse<ITweet>>("/tweets", { text: payload.text, images: payload.images })
+    }
+
+    static async deleteTweet(tweetId: string) {
+        return axios.delete(`/tweets/${tweetId}`)
+    }
+
+    static async uploadImg(formData: any): Promise<any> {
+        return axios.post<any>("/upload", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }

@@ -27,3 +27,45 @@
         }
     }
 }
+.auth-user {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    bottom: 70px;
+    background-color: $invisiblegrey;
+    padding: 10px;
+    border-radius: 9999px;
+    @media (max-width: 1000px) {
+        bottom: 30%;
+        margin-right: 8px;
+    }
+    &__name {
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 5px;
+        max-width: 120px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    &__nick {
+        font-size: 15px;
+        color: $grey;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 120px;
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 1000px) {
+            display: none;
+        }
+        span {
+            cursor: pointer;
+        }
+    }
+    &__info {
+        margin-right: 20px;
+    }
+}

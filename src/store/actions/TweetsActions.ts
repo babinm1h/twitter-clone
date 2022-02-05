@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
+import { ImgObj } from "../../components/Home/TweetForm/TweetForm";
 import { TweetsApi } from "../../services/api/tweets";
-import { IAddTweetAction, IFetchTweetsAction, ISetTweetsAction, ISetTweetsLoadingAction, ITweet, LoadingState, TweetsActions, TweetsActionTypes } from "../../types/TweetsTypes";
+import { IAddTweetAction, IDeleteTweetAction, IFetchTweetsAction, ISetTweetsAction, ISetTweetsLoadingAction, ITweet, LoadingState, TweetsActions, TweetsActionTypes } from "../../types/TweetsTypes";
 
 
 export const setTweets = (payload: ITweet[]): ISetTweetsAction => ({ type: TweetsActionTypes.SET_TWEETS, payload })
@@ -8,6 +9,8 @@ export const setTweets = (payload: ITweet[]): ISetTweetsAction => ({ type: Tweet
 export const fetchTweets = (): IFetchTweetsAction => ({ type: TweetsActionTypes.FETCH_TWEETS })
 
 export const addTweet = (tweet: ITweet): IAddTweetAction => ({ type: TweetsActionTypes.ADD_TWEET, payload: tweet })
+
+export const deleteTweet = (payload: string): IDeleteTweetAction => ({ type: TweetsActionTypes.DELETE_TWEET, payload })
 
 
 export const setTweetsLoading = (payload: LoadingState): ISetTweetsLoadingAction => ({ type: TweetsActionTypes.SET_LOADING, payload })
@@ -25,12 +28,22 @@ export const fetchTweetsThunk = () => {
     }
 }
 
-export const addTweetThunk = (text: string) => {
+export const addTweetThunk = (payload: { text: string, images: string[] }) => {
     return async (dispatch: Dispatch<TweetsActions>) => {
         try {
-            const data = await TweetsApi.addTweet(text)
+            const data = await TweetsApi.addTweet(payload)
             dispatch(addTweet(data.data.data))
+        } catch (e) {
+            dispatch(setTweetsLoading(LoadingState.ERROR))
+        }
+    }
+}
 
+export const deleteTweetThunk = (payload: string) => {
+    return async (dispatch: Dispatch<TweetsActions>) => {
+        try {
+            dispatch(deleteTweet(payload))
+            await TweetsApi.deleteTweet(payload)
         } catch (e) {
             dispatch(setTweetsLoading(LoadingState.ERROR))
         }
