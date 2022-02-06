@@ -9,31 +9,54 @@ import Loader from '../../common/Loader/Loader';
 import { LoadingState } from '../../types/TweetsTypes';
 import Tweet from '../Home/Tweet/Tweet';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useDispatch } from 'react-redux';
+import { fetchUserTweets } from '../../store/actions/TweetsActions';
+import { fetchProfileData } from '../../store/actions/ProfileActions';
 
 const Profile = () => {
-    const { username } = useParams()
-    const { items, loadingState } = useTypedSelector(state => state.tweets)
+    const dispatch = useDispatch()
+    const { username, id } = useParams()
+    const { data, loadingState: profileLoading } = useTypedSelector(state => state.profile)
+    const { loadingState, userTweets } = useTypedSelector(state => state.tweets)
+    const ownerId = useTypedSelector(state => state.user.data?._id)
 
+    const isOwner = data?._id === ownerId
+
+    React.useEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id))
+            dispatch(fetchUserTweets(id))
+        }
+    }, [id])
+
+
+    if (profileLoading === LoadingState.LOADING) {
+        return <div className="loading"><Loader /></div>
+    }
 
     return (
         <>
             <div className="home__main_header">
-                <BackButton /><h2>{username}</h2>
+                <BackButton />
+                <div>
+                    <h2>{username}</h2>
+                    <p>{userTweets.length} Tweets</p>
+                </div>
             </div>
 
             <div className="profile">
                 <div className="profile__background" >
-                    <img src={false || "https://pbs.twimg.com/profile_images/1468082946108239876/5UVLr4HF_400x400.jpg"} alt="userimg" className="avatar profile__avatar" />
+                    <img src={false || userImg} alt="userimg" className="avatar profile__avatar" />
                 </div>
 
                 <div className="profile__owner">
                     <div className="profile__edit-block">
                         <span></span>
-                        <button className="btn profile__edit-btn">Изменить профиль</button>
+                        {isOwner && <button className="btn profile__edit-btn">Изменить профиль</button>}
                     </div>
                     <ul className="profile__info">
-                        <li className="profile__name">mihail777</li>
-                        <li className="profile__nick">@mihail777</li>
+                        <li className="profile__name">{data?.fullName}</li>
+                        <li className="profile__nick">@{data?.username}</li>
                         <li className="profile__status">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi suscipit quo eligendi dolor, ea alias voluptates minima corrupti repellat iusto doloribus veniam.</p>
                         </li>
@@ -53,7 +76,7 @@ const Profile = () => {
                     <div className="profile__content">
                         {loadingState === LoadingState.LOADING
                             ? <div className="tweets__loader"><Loader /></div>
-                            : items.map(i => <Tweet item={i} key={i._id} />)}
+                            : userTweets.map(i => <Tweet item={i} key={i._id} />)}
                     </div>
                 </div>
             </div>

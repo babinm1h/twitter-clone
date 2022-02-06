@@ -4,7 +4,8 @@ import produce, { Draft } from "immer"
 
 const initialState: ITweetsState = {
     items: [],
-    loadingState: LoadingState.NEVER
+    loadingState: LoadingState.NEVER,
+    userTweets: []
 }
 
 
@@ -33,6 +34,12 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
         case TweetsActionTypes.DELETE_TWEET:
             draft.items = draft.items.filter(i => i._id !== action.payload)
             break
+
+        case TweetsActionTypes.GET_USER_TWEETS:
+            draft.userTweets = action.payload
+            draft.loadingState = LoadingState.LOADED
+            break
+
 
 
         default:

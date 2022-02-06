@@ -54,13 +54,13 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
     return (
         <>
             <li className="tweet">
-                <NavLink to={`/${item.user.username}`}>
+                <NavLink to={`/${item.user.username}/${item.user._id}`}>
                     <img src={item.user.avatarUrl || userImg} alt="user" className="small-avatar" />
                 </NavLink>
                 <div className="tweet__body">
                     <div className="tweet__body__header">
                         <div className="tweet__body__info">
-                            <NavLink to={`/${item.user.username}`}>
+                            <NavLink to={`/${item.user.username}/${item.user._id}`}>
                                 <span className="tweet__body__name">{item.user.fullName}</span>
                                 <span className="tweet__body__nick">@{item.user.username}</span>
                             </NavLink>
