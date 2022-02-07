@@ -94,6 +94,9 @@
             &:last-of-type {
                 margin-right: 20%;
             }
+            button {
+                cursor: pointer;
+            }
         }
         &_icon {
             margin-right: 10px;

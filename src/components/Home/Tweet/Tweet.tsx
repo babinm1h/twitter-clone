@@ -3,17 +3,19 @@ import { FaRegComment } from "react-icons/fa"
 import { FiRepeat } from "react-icons/fi"
 import { BsUpload } from "react-icons/bs"
 import { AiOutlineHeart } from "react-icons/ai"
-import { ITweet } from '../../../types/TweetsTypes';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { ITweet, LoadingState } from '../../../types/TweetsTypes';
+import { NavLink } from 'react-router-dom';
 import userImg from "../../../img/Home/defaultUser.png"
 import { formatDate } from '../../../utils/formatDate';
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import "./Tweet.scss"
 import TweetModal from './TweetModal/TweetModal';
-import { UploadImgList } from '../TweetForm/TweetForm';
 import TweetImages from './TweetImages.tsx/TweetImages';
 import { useDispatch } from 'react-redux';
-import { deleteTweetThunk } from '../../../store/actions/TweetsActions';
+import { deleteTweetThunk, fetchTweetsThunk } from '../../../store/actions/TweetsActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { likeTweetThunk, unlikeTweetThunk } from '../../../store/actions/UserActions';
+import { FcLike, FcLikePlaceholder } from "react-icons/fc"
 
 
 interface ITweetProps {
@@ -22,6 +24,10 @@ interface ITweetProps {
 
 
 const Tweet: React.FC<ITweetProps> = ({ item }) => {
+    const { data, likes, loadingState } = useTypedSelector(state => state.user)
+
+    const [likesLength, setLikesLength] = React.useState(item.likes.length)
+
     const [popup, setPopup] = React.useState<boolean>(false)
     const popupRef = React.useRef<HTMLDivElement | any>()
 
@@ -51,6 +57,17 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
         }
     }
 
+    const handleLike = () => {
+        if (data?.likes?.includes(item._id)) {
+            setLikesLength(likesLength - 1)
+            dispatch(unlikeTweetThunk(item._id))
+        } else {
+            setLikesLength(likesLength + 1)
+            dispatch(likeTweetThunk(item._id))
+        }
+    }
+
+
     return (
         <>
             <li className="tweet">
@@ -79,17 +96,26 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
                         <li className="tweet__actions_item">
                             <FaRegComment className="tweet__actions_icon"
                                 size={17} />
-                            <span>177</span>
+                            <span>77</span>
                         </li>
                         <li className="tweet__actions_item">
                             <FiRepeat className="tweet__actions_icon"
                                 size={17} />
-                            <span>177</span>
+                            <span>1499</span>
                         </li>
                         <li className="tweet__actions_item">
-                            <AiOutlineHeart className="tweet__actions_icon"
-                                size={17} />
-                            <span>77</span>
+                            {!data?.likes?.includes(item._id)
+                                ? <button onClick={handleLike}
+                                    disabled={loadingState === LoadingState.LIKE}>
+                                    <FcLikePlaceholder className="tweet__actions_icon"
+                                        size={17} />
+                                </button>
+                                : <button onClick={handleLike}
+                                    disabled={loadingState === LoadingState.LIKE}>
+                                    <FcLike className="tweet__actions_icon"
+                                        size={17} />
+                                </button>}
+                            <span>{likesLength}</span>
                         </li>
                         <li className="tweet__actions_item">
                             <BsUpload className="tweet__actions_icon" size={17} />

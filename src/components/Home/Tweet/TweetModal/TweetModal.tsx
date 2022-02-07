@@ -1,7 +1,5 @@
 import React from 'react';
 import { BsTrash, BsPencil } from 'react-icons/bs';
-import { useDispatch } from 'react-redux';
-import { deleteTweetThunk } from '../../../../store/actions/TweetsActions';
 import "./TweetModal.scss"
 
 interface ITweetModalProps {

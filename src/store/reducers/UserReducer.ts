@@ -1,5 +1,5 @@
 import produce, { Draft } from "immer"
-import { LoadingState } from "../../types/TweetsTypes"
+import { ITweet, LoadingState } from "../../types/TweetsTypes"
 import { IUserState, UserActions, UserActionTypes } from "../../types/UserTypes"
 
 
@@ -7,6 +7,7 @@ import { IUserState, UserActions, UserActionTypes } from "../../types/UserTypes"
 const initialState: IUserState = {
     data: undefined,
     loadingState: LoadingState.NEVER,
+    likes: []
 }
 
 
@@ -25,6 +26,19 @@ export const userReducer = produce((draft: Draft<IUserState>, action: UserAction
         case UserActionTypes.LOGOUT:
             draft.loadingState = LoadingState.LOADED
             draft.data = undefined
+            break
+
+
+        case UserActionTypes.LIKE_TWEET:
+            draft.data?.likes?.push(action.payload)
+            draft.loadingState = LoadingState.LOADED
+            break
+
+        case UserActionTypes.UNLIKE_TWEET:
+            if (draft?.data?.likes) {
+                draft.data.likes = draft.data?.likes?.filter(i => i !== action.payload)
+            }
+            draft.loadingState = LoadingState.LOADED
             break
 
         default:

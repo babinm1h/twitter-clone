@@ -1,7 +1,6 @@
 import React from 'react';
 import { BiLogOut } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
 import Modal from '../../common/Modal/Modal';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import userImg from "../../img/Home/defaultUser.png"
@@ -10,7 +9,6 @@ import "./AuthUser.scss"
 
 const AuthUser = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const { data } = useTypedSelector(state => state.user)
     const [logoutModal, setLogoutModal] = React.useState<boolean>(false)

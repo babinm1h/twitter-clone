@@ -27,7 +27,8 @@ const Profile = () => {
             dispatch(fetchProfileData(id))
             dispatch(fetchUserTweets(id))
         }
-    }, [id])
+    }, [id, dispatch])
+
 
 
     if (profileLoading === LoadingState.LOADING) {

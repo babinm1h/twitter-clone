@@ -7,7 +7,6 @@
         display: flex;
         align-items: center;
         padding: 12px 16px;
-        cursor: pointer;
         transition: all 0.1s linear;
         justify-content: space-between;
         &:hover {
@@ -37,6 +36,10 @@
             }
             &:active {
                 background-color: lighten(black, 25%);
+            }
+            &:disabled {
+                pointer-events: none;
+                background-color: $greyhover;
             }
         }
         &__info {

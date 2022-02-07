@@ -5,7 +5,8 @@ export enum LoadingState {
     LOADING = "LOADING",
     ERROR = "ERROR",
     NEVER = "NEVER",
-    SUCCESS = "SUCCESS"
+    SUCCESS = "SUCCESS",
+    LIKE = "LIKE"
 }
 
 
@@ -22,6 +23,7 @@ export interface ITweet {
     createdAt: string
     user: IUser
     images?: string[]
+    likes: string[]
 }
 
 export interface ITweetsState {

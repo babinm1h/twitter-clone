@@ -4,7 +4,6 @@ import { Route, Routes, useNavigate } from 'react-router';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import Home from './pages/Home/Home';
 import LoginPage from './pages/LoginPage/LoginPage';
-import { AuthApi } from './services/api/auth';
 import { checkAuth } from './store/actions/UserActions';
 import { BsTwitter } from "react-icons/bs"
 import { LoadingState } from './types/TweetsTypes';

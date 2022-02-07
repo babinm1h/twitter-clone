@@ -1,9 +1,8 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import Modal from '../../../common/Modal/Modal';
-import { AuthApi } from '../../../services/api/auth';
 import * as Yup from "yup"
-import { BiErrorAlt, BiErrorCircle } from "react-icons/bi"
+import { BiErrorCircle } from "react-icons/bi"
 import { useDispatch } from 'react-redux';
 import { login } from '../../../store/actions/UserActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';

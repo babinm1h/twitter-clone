@@ -35,8 +35,15 @@ export class TweetsApi {
         })
     }
 
-
     static async getUserTweets(userId: string): Promise<AxiosResponse<ITweetsResponse<ITweet[]>>> {
         return axios.get<ITweetsResponse<ITweet[]>>(`/tweets/user/${userId}`)
+    }
+
+    static async like(tweetId: string) {
+        return axios.post(`tweets/like/${tweetId}`)
+    }
+
+    static async unlike(tweetId: string) {
+        return axios.delete(`tweets/unlike/${tweetId}`,)
     }
 }
