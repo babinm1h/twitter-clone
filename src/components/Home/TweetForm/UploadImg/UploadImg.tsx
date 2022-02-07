@@ -12,7 +12,6 @@ const UploadImg: React.FC<IUploadImgProps> = ({ setImages, images }) => {
 
     const handleImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
-        e.target.value = ""
         if (file) {
             const fileObj = new Blob([file])
             setImages(prev => [...prev, {

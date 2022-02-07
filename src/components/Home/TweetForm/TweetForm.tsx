@@ -34,19 +34,20 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
             images: images
         },
 
-        onSubmit: async (values, { resetForm }) => {
+        onSubmit: async (values, { resetForm, setSubmitting }) => {
+            setSubmitting(false)
             values.images = images
-            const result = images.map(i => i.blobUrl)
-
-            const files = images.map(i => i.file)
-            if (values.images.length > 0) {
-                const res = await uploadImg(files)
-                console.log(res);
+            const urls = []
+            for (let i = 0; i < images.length; i++) {
+                const file = images[i].file
+                const { url } = await uploadImg(file)
+                urls.push(url)
             }
 
-            dispatch(addTweetThunk({ text: values.text, images: result }))
+            dispatch(addTweetThunk({ text: values.text, images: urls }))
             resetForm()
             setImages([])
+            setSubmitting(true)
         },
 
         validationSchema: Yup.object().shape({
@@ -78,7 +79,7 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
                         </ul>
                         <button className="form-actions__btn btn" type="submit"
                             disabled={!formik.values.text || !!formik.errors.text
-                                || loadingState === LoadingState.LOADING}>
+                                || loadingState === LoadingState.LOADING || formik.isSubmitting}>
                             Твитнуть
                         </button>
                     </div>

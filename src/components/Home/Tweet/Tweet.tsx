@@ -24,10 +24,10 @@ interface ITweetProps {
 
 
 const Tweet: React.FC<ITweetProps> = ({ item }) => {
-    const { data, likes, loadingState } = useTypedSelector(state => state.user)
+    const { data, loadingState } = useTypedSelector(state => state.user)
+    const isOnwer = data?._id === item.user._id
 
     const [likesLength, setLikesLength] = React.useState(item.likes.length)
-
     const [popup, setPopup] = React.useState<boolean>(false)
     const popupRef = React.useRef<HTMLDivElement | any>()
 
@@ -85,8 +85,8 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
                                 · {formatDate(new Date(item.createdAt))}
                             </span>
                         </div>
-                        <BiDotsHorizontalRounded size={32} className="tweet__body__dots"
-                            onClick={onOpenPopup} />
+                        {isOnwer && <BiDotsHorizontalRounded size={32} className="tweet__body__dots"
+                            onClick={onOpenPopup} />}
                     </div>
                     <NavLink to={`/${item.user.username}/tweet/${item._id}`}>
                         <div className="tweet__body__text">{item.text}</div>

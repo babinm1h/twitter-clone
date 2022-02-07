@@ -29,6 +29,7 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
 
         case TweetsActionTypes.ADD_TWEET:
             draft.items.unshift(action.payload)
+            draft.loadingState = LoadingState.LOADED
             break
 
         case TweetsActionTypes.DELETE_TWEET:

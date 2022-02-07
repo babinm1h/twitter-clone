@@ -33,6 +33,7 @@ export const fetchTweetsThunk = () => {
 export const addTweetThunk = (payload: { text: string, images: string[] }) => {
     return async (dispatch: Dispatch<TweetsActions>) => {
         try {
+            dispatch(setTweetsLoading(LoadingState.LOADING))
             const data = await TweetsApi.addTweet(payload)
             dispatch(addTweet(data.data.data))
         } catch (e) {

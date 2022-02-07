@@ -18,7 +18,6 @@ export interface IDBUser {
 export interface IUserState {
     data: IDBUser | undefined
     loadingState: LoadingState
-    likes: string[]
 }
 
 

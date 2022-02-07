@@ -7,7 +7,6 @@ import { IUserState, UserActions, UserActionTypes } from "../../types/UserTypes"
 const initialState: IUserState = {
     data: undefined,
     loadingState: LoadingState.NEVER,
-    likes: []
 }
 
 

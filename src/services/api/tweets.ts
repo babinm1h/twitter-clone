@@ -8,6 +8,13 @@ interface ITweetsResponse<T> {
     data: T
 }
 
+interface IUploadRes {
+    url: string
+    size: number
+    width: number
+    height: number
+}
+
 
 export class TweetsApi {
 
@@ -27,8 +34,8 @@ export class TweetsApi {
         return axios.delete(`/tweets/${tweetId}`)
     }
 
-    static async uploadImg(formData: any): Promise<any> {
-        return axios.post<any>("/upload", formData, {
+    static async uploadImg(formData: any): Promise<AxiosResponse<IUploadRes>> {
+        return axios.post<IUploadRes>("/upload", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

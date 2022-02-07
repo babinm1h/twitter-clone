@@ -1,5 +1,5 @@
 import produce, { Draft } from "immer";
-import { ITweet, LoadingState } from "../../types/TweetsTypes";
+import {  LoadingState } from "../../types/TweetsTypes";
 import { ITweetState, TweetActions, TweetActionTypes } from "../../types/TweetTypes";
 
 
