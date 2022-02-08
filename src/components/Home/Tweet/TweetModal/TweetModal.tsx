@@ -4,9 +4,10 @@ import "./TweetModal.scss"
 
 interface ITweetModalProps {
     handleDeleteTweet: () => void
+    handleEdit?: () => void
 }
 
-const TweetModal: React.FC<ITweetModalProps> = ({ handleDeleteTweet }) => {
+const TweetModal: React.FC<ITweetModalProps> = ({ handleDeleteTweet, handleEdit }) => {
 
 
     return (
@@ -16,10 +17,10 @@ const TweetModal: React.FC<ITweetModalProps> = ({ handleDeleteTweet }) => {
                     <span><BsTrash size={17} /></span>
                     <p>Удалить</p>
                 </li>
-                <li className="tweet-popup__item" >
+                {handleEdit && <li className="tweet-popup__item" onClick={handleEdit} >
                     <span><BsPencil size={17} /></span>
                     <p>Редактировать</p>
-                </li>
+                </li>}
             </ul>
         </div >
     );

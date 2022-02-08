@@ -1,0 +1,17 @@
+@import "../../variables.scss";
+.back__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: all 0.15s linear;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 30px;
+    &:hover {
+        background-color: $greyhover;
+    }
+    &:active {
+        background-color: $greyactive;
+    }
+}

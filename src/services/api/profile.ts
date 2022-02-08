@@ -16,5 +16,7 @@ export class ProfileApi {
         return axios.get<IProfileResponse>(`/users/${userId}`)
     }
 
-
+    static async setAbout(payload: string): Promise<AxiosResponse<IProfileResponse>> {
+        return axios.patch<IProfileResponse>(`/profile/about`, { about: payload })
+    }
 }

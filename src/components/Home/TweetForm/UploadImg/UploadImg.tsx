@@ -23,7 +23,8 @@ const UploadImg: React.FC<IUploadImgProps> = ({ setImages, images }) => {
 
     return (
         <>
-            <input type="file" id="file-input" hidden onChange={handleImgUpload} />
+            <input type="file" id="file-input" hidden onChange={handleImgUpload}
+                accept="image/png, image/gif, image/jpeg, image/jpg" />
             <button type="button" >
                 <label htmlFor="file-input">
                     <BsImage className="action-icon" size={18} />

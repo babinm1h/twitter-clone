@@ -71,7 +71,6 @@
             align-items: center;
             margin-bottom: 25px;
             div {
-                margin-left: 30px;
                 p {
                     color: $grey;
                 }
@@ -149,7 +148,7 @@
     }
 }
 
-/////////////////////// right
+
 .trends {
     background-color: $invisiblegrey;
     border-radius: 12px;
@@ -169,20 +168,5 @@
             color: $grey;
             font-size: 13px;
         }
-    }
-}
-.back__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    transition: all 0.15s linear;
-    border-radius: 50%;
-    cursor: pointer;
-    &:hover {
-        background-color: $greyhover;
-    }
-    &:active {
-        background-color: $greyactive;
     }
 }

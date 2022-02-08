@@ -69,6 +69,20 @@
                 background-color: rgba($mainblue, 0.25);
             }
         }
+        &__edit-input {
+            border: 2px solid $greyactive;
+            padding: 5px;
+            border-radius: 9999px;
+            width: 100%;
+        }
+        &__edit-btn {
+            background-color: $mainblue;
+            color: white;
+            margin-top: 8px;
+            &:hover {
+                background-color: darken($mainblue, 10%);
+            }
+        }
     }
     &__actions {
         display: flex;
@@ -109,6 +123,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        margin-bottom: 10px;
         &__item {
             width: 200px;
             height: 200px;

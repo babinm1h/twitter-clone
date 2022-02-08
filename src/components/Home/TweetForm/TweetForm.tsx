@@ -12,7 +12,7 @@ import { LoadingState } from '../../../types/TweetsTypes';
 import UploadImg from './UploadImg/UploadImg';
 import "./TweetForm.scss"
 import { uploadImg } from '../../../utils/uploadImg';
-import { TweetsApi } from '../../../services/api/tweets';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 interface ITweetFormProps {
     loadingState?: LoadingState
@@ -25,6 +25,7 @@ export interface ImgObj {
 
 const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
     const [images, setImages] = React.useState<ImgObj[]>([])
+    const { data } = useTypedSelector(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -61,7 +62,7 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
     return (
         <>
             <form className="tweet-form" onSubmit={formik.handleSubmit}>
-                <img src={userImg} alt="user" className="small-avatar" />
+                <img src={data?.avatarUrl || userImg} alt="user" className="small-avatar" />
                 <div className="tweet-form__block">
                     <textarea className="tweet-form__area" name="text"
                         placeholder="Что происходит?"

@@ -12,6 +12,7 @@ export interface IDBUser {
     about: string
     website: string
     likes?: string[]
+    avatarUrl: string
 }
 
 
@@ -27,7 +28,9 @@ export enum UserActionTypes {
     SET_ERROR = "user/SET_ERROR",
     LOGOUT = "user/LOGOUT",
     LIKE_TWEET = "user/LIKE_TWEET",
-    UNLIKE_TWEET = "user/UNLIKE_TWEET"
+    UNLIKE_TWEET = "user/UNLIKE_TWEET",
+    UPLOAD_AVATAR = "user/UPLOAD_AVATAR",
+    SET_ABOUT = "user/SET_ABOUT"
 }
 
 export interface ISetUserDataAction {
@@ -49,7 +52,14 @@ export interface IUnLikeTweetAction {
     type: UserActionTypes.UNLIKE_TWEET
     payload: string
 }
-
+export interface IUploadAvatarAction {
+    type: UserActionTypes.UPLOAD_AVATAR
+    payload: string
+}
+export interface ISetUserAbout {
+    type: UserActionTypes.SET_ABOUT
+    payload: string
+}
 
 export type UserActions = ISetUserDataAction | ISetUserLoadingAction |
-    ILogoutAction | ILikeTweetAction | IUnLikeTweetAction
+    ILogoutAction | ILikeTweetAction | IUnLikeTweetAction | IUploadAvatarAction | ISetUserAbout

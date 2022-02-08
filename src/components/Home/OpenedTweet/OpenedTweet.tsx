@@ -14,19 +14,27 @@ import { formatDate } from '../../../utils/formatDate';
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import TweetModal from '../Tweet/TweetModal/TweetModal';
 import { deleteTweetThunk } from '../../../store/actions/TweetsActions';
+import TweetImages from '../Tweet/TweetImages.tsx/TweetImages';
+import { FcLike, FcLikePlaceholder } from "react-icons/fc"
+import { unlikeTweetThunk, likeTweetThunk } from '../../../store/actions/UserActions';
+import { LoadingState } from '../../../types/TweetsTypes';
 
 
 
 const TweetPage = () => {
+    const { data, loadingState } = useTypedSelector(state => state.tweet)
+    const { data: authData } = useTypedSelector(state => state.user)
+
     const [popup, setPopup] = React.useState<boolean>(false)
+    const [likesLength, setLikesLength] = React.useState(data?.likes.length)
     const popupRef = React.useRef<HTMLDivElement | any>()
 
     const navigate = useNavigate()
-
     const dispatch = useDispatch()
-    const { data, loadingState } = useTypedSelector(state => state.tweet)
     const { username, id } = useParams<string>()
 
+
+    const isOwner = authData === data?.user._id
 
     const handleClick = (e: Event) => {
         if (popupRef.current) {
@@ -61,6 +69,18 @@ const TweetPage = () => {
     }, []);
 
 
+    const handleLike = () => {
+        if (data && id) {
+            if (authData?.likes?.includes(id)) {
+                setLikesLength(likesLength! - 1)
+                dispatch(unlikeTweetThunk(id))
+            } else {
+                setLikesLength(likesLength! + 1)
+                dispatch(likeTweetThunk(id))
+            }
+        }
+    }
+
 
     if (!data) return null
 
@@ -77,8 +97,8 @@ const TweetPage = () => {
                         <div className="opened-tweet__fullname">{data.user.fullName}</div>
                         <div className="opened-tweet__nick">@{data.user.username}</div>
                     </div>
-                    <BiDotsHorizontalRounded size={32} className="opened-tweet__dots"
-                        onClick={onOpenPopup} />
+                    {isOwner && <BiDotsHorizontalRounded size={32} className="opened-tweet__dots"
+                        onClick={onOpenPopup} />}
                     {popup && <div ref={popupRef}>
                         <TweetModal handleDeleteTweet={handleDeleteTweet} />
                     </div>}
@@ -87,6 +107,8 @@ const TweetPage = () => {
                     {data.text}
                 </div>
 
+                {data.images && <TweetImages images={data.images} />}
+
                 <div className="opened-tweet__date">Создан: {formatDate(new Date(data.createdAt))}</div>
 
                 <ul className="opened-tweet__stats stats-opened">
@@ -94,7 +116,7 @@ const TweetPage = () => {
                         <span>777</span> Retweets
                     </li>
                     <li className="stats-opened__item">
-                        <span>9999</span> Likes
+                        <span>{data.likes.length}</span> Likes
                     </li>
                 </ul>
 
@@ -109,8 +131,17 @@ const TweetPage = () => {
                             size={24} />
                     </li>
                     <li className="actions-opened__item">
-                        <AiOutlineHeart className="actions-opened__icon"
-                            size={24} />
+                        {!authData?.likes?.includes(data._id)
+                            ? <button onClick={handleLike}
+                                disabled={loadingState === LoadingState.LIKE}>
+                                <FcLikePlaceholder className="actions-opened__icon"
+                                    size={24} />
+                            </button>
+                            : <button onClick={handleLike}
+                                disabled={loadingState === LoadingState.LIKE}>
+                                <FcLike className="actions-opened__icon"
+                                    size={24} />
+                            </button>}
                     </li>
                     <li className="actions-opened__item">
                         <BsUpload className="actions-opened__icon" size={24} />

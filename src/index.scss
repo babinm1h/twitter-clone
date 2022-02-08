@@ -108,6 +108,7 @@ body {
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+    object-fit: contain;
 }
 
 .loading {
@@ -122,4 +123,5 @@ body {
     border-radius: 9999px;
     width: 135px;
     height: 135px;
+    object-fit: contain;
 }

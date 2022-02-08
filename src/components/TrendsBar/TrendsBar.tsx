@@ -4,6 +4,7 @@ import Loader from '../../common/Loader/Loader';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchTrendsThunk } from '../../store/actions/TrendsActions';
 import { LoadingState } from '../../types/TweetsTypes';
+import "./TrendsBar.scss"
 
 const TrendsBar = () => {
     const dispatch = useDispatch()

@@ -1,9 +1,11 @@
 import { Dispatch } from "react";
 import { ILoginData } from "../../components/LoginPage/LoginModal/LoginModal";
 import { AuthApi } from "../../services/api/auth";
+import { ProfileApi } from "../../services/api/profile";
 import { TweetsApi } from "../../services/api/tweets";
+import { UploadApi } from "../../services/api/upload";
 import { ITweet, LoadingState } from "../../types/TweetsTypes";
-import { IDBUser, ILikeTweetAction, ILogoutAction, ISetUserDataAction, ISetUserLoadingAction, IUnLikeTweetAction, UserActions, UserActionTypes } from "../../types/UserTypes";
+import { IDBUser, ILikeTweetAction, ILogoutAction, ISetUserAbout, ISetUserDataAction, ISetUserLoadingAction, IUnLikeTweetAction, IUploadAvatarAction, UserActions, UserActionTypes } from "../../types/UserTypes";
 
 
 
@@ -17,7 +19,9 @@ export const likeTweet = (payload: string): ILikeTweetAction => ({ type: UserAct
 
 export const unlikeTweet = (payload: string): IUnLikeTweetAction => ({ type: UserActionTypes.UNLIKE_TWEET, payload })
 
+export const uploadAvatar = (payload: string): IUploadAvatarAction => ({ type: UserActionTypes.UPLOAD_AVATAR, payload })
 
+export const setUserAbout = (payload: string): ISetUserAbout => ({ type: UserActionTypes.SET_ABOUT, payload })
 
 
 // ============================================ THUNKS
@@ -76,6 +80,39 @@ export const unlikeTweetThunk = (tweetId: string) => {
             dispatch(setUserLoading(LoadingState.LIKE))
             await TweetsApi.unlike(tweetId)
             dispatch(unlikeTweet(tweetId))
+        } catch (err) {
+            dispatch(setUserLoading(LoadingState.ERROR))
+        }
+    }
+}
+
+
+export const updateTweet = (tweetId: string, payload: string) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            await TweetsApi.update(tweetId, payload)
+        } catch (err) {
+            dispatch(setUserLoading(LoadingState.ERROR))
+        }
+    }
+}
+
+export const uploadAvatarThunk = (payload: string) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            dispatch(uploadAvatar(payload))
+        } catch (err) {
+            dispatch(setUserLoading(LoadingState.ERROR))
+        }
+    }
+}
+
+
+export const setUserAboutThunk = (payload: string) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            await ProfileApi.setAbout(payload)
+            dispatch(setUserAbout(payload))
         } catch (err) {
             dispatch(setUserLoading(LoadingState.ERROR))
         }

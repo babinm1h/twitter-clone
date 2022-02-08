@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { FaRegComment } from "react-icons/fa"
 import { FiRepeat } from "react-icons/fi"
 import { BsUpload } from "react-icons/bs"
@@ -16,6 +16,7 @@ import { deleteTweetThunk, fetchTweetsThunk } from '../../../store/actions/Tweet
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { likeTweetThunk, unlikeTweetThunk } from '../../../store/actions/UserActions';
 import { FcLike, FcLikePlaceholder } from "react-icons/fc"
+import { TweetsApi } from '../../../services/api/tweets';
 
 
 interface ITweetProps {
@@ -29,8 +30,11 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
 
     const [likesLength, setLikesLength] = React.useState(item.likes.length)
     const [popup, setPopup] = React.useState<boolean>(false)
-    const popupRef = React.useRef<HTMLDivElement | any>()
 
+    const [editMode, setEditMode] = React.useState<boolean>(false)
+    const [text, setText] = React.useState<string>(item.text)
+
+    const popupRef = React.useRef<HTMLDivElement | any>()
     const dispatch = useDispatch()
 
     const handleClick = (e: Event) => {
@@ -67,6 +71,17 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
         }
     }
 
+    const handleEdit = () => {
+        setEditMode(true)
+    }
+    const handleChangeTweet = (e: ChangeEvent<HTMLInputElement>) => {
+        setText(e.target.value)
+    }
+    const handleSaveChanges = async () => {
+        setEditMode(false)
+        await TweetsApi.update(item._id, text)
+    }
+
 
     return (
         <>
@@ -88,10 +103,19 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
                         {isOnwer && <BiDotsHorizontalRounded size={32} className="tweet__body__dots"
                             onClick={onOpenPopup} />}
                     </div>
-                    <NavLink to={`/${item.user.username}/tweet/${item._id}`}>
-                        <div className="tweet__body__text">{item.text}</div>
-                        {item.images && <TweetImages images={item.images} />}
-                    </NavLink>
+
+                    {editMode
+                        ? <div>
+                            <input type="text" className="tweet__body__edit-input"
+                                onChange={(e) => handleChangeTweet(e)} value={text} />
+                            <button onClick={handleSaveChanges} className="btn tweet__body__edit-btn">
+                                Сохранить
+                            </button>
+                        </div>
+                        : <NavLink to={`/${item.user.username}/tweet/${item._id}`}>
+                            <p className="tweet__body__text">{text}</p>
+                            {item.images && <TweetImages images={item.images} />}
+                        </NavLink>}
                     <ul className="tweet__actions">
                         <li className="tweet__actions_item">
                             <FaRegComment className="tweet__actions_icon"
@@ -124,7 +148,9 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
                 </div>
 
 
-                {popup && <div ref={popupRef}><TweetModal handleDeleteTweet={handleDeleteTweet} /></div>}
+                {popup && <div ref={popupRef}>
+                    <TweetModal handleDeleteTweet={handleDeleteTweet} handleEdit={handleEdit} />
+                </div>}
             </li>
         </>
     );

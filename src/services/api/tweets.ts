@@ -8,12 +8,6 @@ interface ITweetsResponse<T> {
     data: T
 }
 
-interface IUploadRes {
-    url: string
-    size: number
-    width: number
-    height: number
-}
 
 
 export class TweetsApi {
@@ -34,12 +28,9 @@ export class TweetsApi {
         return axios.delete(`/tweets/${tweetId}`)
     }
 
-    static async uploadImg(formData: any): Promise<AxiosResponse<IUploadRes>> {
-        return axios.post<IUploadRes>("/upload", formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+
+    static async update(tweetId: string, payload: string) {
+        return axios.patch(`http://localhost:8888/tweets/${tweetId}`, { text: payload })
     }
 
     static async getUserTweets(userId: string): Promise<AxiosResponse<ITweetsResponse<ITweet[]>>> {
@@ -47,10 +38,10 @@ export class TweetsApi {
     }
 
     static async like(tweetId: string) {
-        return axios.post(`tweets/like/${tweetId}`)
+        return axios.post(`http://localhost:8888/tweets/like/${tweetId}`)
     }
 
     static async unlike(tweetId: string) {
-        return axios.delete(`tweets/unlike/${tweetId}`,)
+        return axios.delete(`http://localhost:8888/tweets/unlike/${tweetId}`,)
     }
 }

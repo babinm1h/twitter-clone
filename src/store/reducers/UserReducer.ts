@@ -40,6 +40,18 @@ export const userReducer = produce((draft: Draft<IUserState>, action: UserAction
             draft.loadingState = LoadingState.LOADED
             break
 
+        case UserActionTypes.UPLOAD_AVATAR:
+            if (draft.data) {
+                draft.data.avatarUrl = action.payload
+            }
+            break
+
+        case UserActionTypes.SET_ABOUT:
+            if (draft.data) {
+                draft.data.about = action.payload
+            }
+            break
+
         default:
             return draft
     }

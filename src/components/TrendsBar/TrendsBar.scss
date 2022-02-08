@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.trends {
+    background-color: $invisiblegrey;
+    border-radius: 12px;
+    min-width: 320px;
+    &__item {
+        padding: 12px 16px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(#ccc, 0.1);
+        }
+        &_title {
+            font-weight: bold;
+            font-size: 15px;
+            margin: 5px 0;
+        }
+        &_tweets {
+            color: $grey;
+            font-size: 13px;
+        }
+    }
+}

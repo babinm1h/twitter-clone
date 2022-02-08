@@ -1,6 +1,7 @@
 import React from 'react';
 import { HiArrowLeft } from "react-icons/hi"
 import { useNavigate } from 'react-router';
+import "./BackButton.scss"
 
 const BackButton = () => {
     const navigate = useNavigate()

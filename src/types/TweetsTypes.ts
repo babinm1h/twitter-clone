@@ -6,7 +6,7 @@ export enum LoadingState {
     ERROR = "ERROR",
     NEVER = "NEVER",
     SUCCESS = "SUCCESS",
-    LIKE = "LIKE"
+    LIKE = "LIKE",
 }
 
 
