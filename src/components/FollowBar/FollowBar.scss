@@ -35,4 +35,10 @@
             align-items: center;
         }
     }
+    &__show-more {
+        color: $mainblue;
+        font-size: 15px;
+        margin: 16px 0px 0px 16px;
+        display: inline-block;
+    }
 }

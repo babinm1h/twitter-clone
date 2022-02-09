@@ -116,6 +116,11 @@
     }
     &__content {
         margin-top: 15px;
+        &_empty {
+            font-weight: bold;
+            font-size: 15px;
+            text-align: center;
+        }
     }
     &__edit {
         &__avatar-block {

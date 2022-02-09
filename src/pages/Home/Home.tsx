@@ -12,6 +12,9 @@ import TweetPage from '../../components/Home/OpenedTweet/OpenedTweet';
 import Profile from '../../components/Profile/Profile';
 import AuthUser from '../../components/AuthUser/AuthUser';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import UsersList from '../../components/Home/UsersList/UsersList';
+import { FiUsers } from 'react-icons/fi';
+
 
 const Home = () => {
     const { data } = useTypedSelector(state => state.user)
@@ -23,6 +26,15 @@ const Home = () => {
     const onOpenModal = () => {
         setAddTweetModal(true)
     }
+
+
+    const navItems = [
+        { icon: <AiOutlineHome className="sidebar-menu__icon" size={28} />, title: "Главная", path: "/home" },
+        { icon: <AiOutlineUser className="sidebar-menu__icon" size={28} />, title: "Профиль", path: `/${data?.username}/${data?._id}` },
+        { icon: <FiUsers className="sidebar-menu__icon" size={28} />, title: "Пользователи", path: "/users" },
+        { icon: <AiOutlineSearch className="sidebar-menu__icon" size={28} />, title: "Поиск", path: "" },
+        { icon: <AiOutlineMail className="sidebar-menu__icon" size={28} />, title: "Сообщения", path: "" },
+    ]
 
     return (
         <>
@@ -37,32 +49,11 @@ const Home = () => {
                                             <BsTwitter size={30} className="home__logo" />
                                         </NavLink>
                                     </li>
-                                    <li>
-                                        <NavLink to="/home" className="sidebar-menu__item">
-                                            <AiOutlineHome className="sidebar-menu__icon" size={28} />
-                                            <span>Главная</span>
+                                    {navItems.map(i => <li>
+                                        <NavLink to={i.path} className="sidebar-menu__item">
+                                            {i.icon}<span>{i.title}</span>
                                         </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to={`/${data?.username}/${data?._id}`} className="sidebar-menu__item">
-                                            <AiOutlineUser className="sidebar-menu__icon" size={28} />
-                                            <span>Профиль</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to=""
-                                            className="sidebar-menu__item sidebar-menu__item_disabled">
-                                            <AiOutlineSearch className="sidebar-menu__icon" size={28} />
-                                            <span>Поиск</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to=""
-                                            className="sidebar-menu__item sidebar-menu__item_disabled">
-                                            <AiOutlineMail className="sidebar-menu__icon sidebar-menu__icon_disabled" size={28} />
-                                            <span>Сообщения</span>
-                                        </NavLink>
-                                    </li>
+                                    </li>)}
                                 </ul>
                             </nav>
                             <button className="tweet-button" onClick={onOpenModal}>
@@ -72,6 +63,7 @@ const Home = () => {
                         </div>
 
                         <AuthUser />
+                        
                     </div>
 
 
@@ -80,7 +72,8 @@ const Home = () => {
                             <Routes>
                                 <Route path="/home" element={<TweetsList />} />
                                 <Route path="/:username/tweet/:id" element={<TweetPage />} />
-                                <Route path="/:username/:id" element={<Profile />} />
+                                <Route path="/:username/:id/*" element={<Profile />} />
+                                <Route path="/users" element={<UsersList />} />
                             </Routes>
                         </div>
                     </div>

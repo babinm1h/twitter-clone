@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { FollowBarApi } from "../../services/api/followBar";
 import { FollowBarActions, FollowBarActionTypes, IFetchFollowBarUsersAction, ISetFollowBarLoadingAction, ISetFollowBarUsersAction } from "../../types/FollowBarTypes";
-import { IUser, LoadingState } from "../../types/TweetsTypes";
+import { LoadingState } from "../../types/TweetsTypes";
 import { IDBUser } from "../../types/UserTypes";
 
 
@@ -14,7 +14,7 @@ export const setFollowBarLoading = (payload: LoadingState): ISetFollowBarLoading
 
 // ============================================ THUNKS
 
-export const fetchFollowBarUsersThunk = () => {
+export const fetchUsers = () => {
     return async (dispatch: Dispatch<FollowBarActions>) => {
         try {
             dispatch(fetchFollowBarUsers())

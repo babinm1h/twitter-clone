@@ -1,10 +1,8 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import { Route, Routes, useParams } from 'react-router';
 import BackButton from '../BackButton/BackButton';
-import userImg from "../../img/Home/defaultUser.png"
 import { BsCalendarWeek } from "react-icons/bs"
 import "./Profile.scss"
-import { NavLink } from 'react-router-dom';
 import Loader from '../../common/Loader/Loader';
 import { LoadingState } from '../../types/TweetsTypes';
 import Tweet from '../Home/Tweet/Tweet';
@@ -20,6 +18,11 @@ import { followThunk, setUserAboutThunk, unfollowThunk, uploadAvatarThunk } from
 import { useFormik } from 'formik';
 import * as Yup from "yup"
 import Linkify from 'linkify-react';
+import ProfileTabs from './ProfileTabs/ProfileTabs';
+import ProfileTweets from './ProfileTweets/ProfileTweets';
+
+
+
 
 const Profile = () => {
     const [modal, setModal] = React.useState<boolean>(false)
@@ -104,7 +107,7 @@ const Profile = () => {
 
             <div className="profile">
                 <div className="profile__background" >
-                    <img src={data?.avatarUrl || userImg} alt="userimg" className="avatar profile__avatar" />
+                    <img src={data?.avatarUrl} alt="userimg" className="avatar profile__avatar" />
                 </div>
 
                 <div className="profile__owner">
@@ -138,26 +141,22 @@ const Profile = () => {
                         </li>
                     </ul>
 
-                    <nav className="profile__tabs">
-                        <NavLink to="">
-                            <div className="profile__tabs__item profile__tabs__item_active">
-                                <span>Tweets</span>
-                            </div>
-                        </NavLink>
-                        <NavLink to="/likes">
-                            <div className="profile__tabs__item">
-                                <span>Likes</span>
-                            </div>
-                        </NavLink>
-                    </nav>
+                    <ProfileTabs />
 
                     <div className="profile__content">
-                        {loadingState === LoadingState.LOADING
-                            ? <div className="tweets__loader"><Loader /></div>
-                            : userTweets.map(i => <Tweet item={i} key={i._id} />)}
+                        <Routes>
+                            <Route path=""
+                                element={<ProfileTweets loadingState={loadingState}
+                                    userTweets={userTweets} />} />
+                            <Route path="/likes"
+                                element={<div className="profile__content_empty">Список пуст!</div>} />
+                            <Route path="/media"
+                                element={<div className="profile__content_empty">Список пуст!</div>} />
+                        </Routes>
                     </div>
                 </div>
             </div>
+
 
             {modal && <Modal title="Изменить профиль" onClose={handleCloseModal}>
                 <div className="profile__edit">
