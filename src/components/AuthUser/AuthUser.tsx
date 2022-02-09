@@ -3,7 +3,6 @@ import { BiLogOut } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import Modal from '../../common/Modal/Modal';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import userImg from "../../img/Home/defaultUser.png"
 import { logout } from '../../store/actions/UserActions';
 import "./AuthUser.scss"
 
@@ -29,11 +28,11 @@ const AuthUser = () => {
     return (
         <>
             <div className="auth-user" onClick={onOpenModal}>
-                <img src={userImg} alt="user" className="small-avatar" />
+                <img src={data?.avatarUrl} alt="user" className="small-avatar" />
                 <div className="auth-user__content">
                     <div className="auth-user__info">
                         <p className="auth-user__name">{data?.fullName}</p>
-                        <p className="auth-user__nick">{data?.username}</p>
+                        <p className="auth-user__nick">@{data?.username}</p>
                     </div>
                     <span onClick={onOpenModal}>
                         <BiLogOut size={22} color={"black"} />

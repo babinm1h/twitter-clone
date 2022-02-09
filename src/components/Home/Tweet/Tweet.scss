@@ -9,7 +9,7 @@
         border-top: 2px solid $invisiblegrey;
     }
     &__body {
-        padding-top: 3px;
+        padding-top: 0px;
         flex: 1 1 100%;
         &__header {
             display: flex;
@@ -52,6 +52,11 @@
             font-size: 15px;
             overflow-wrap: break-word;
             word-break: break-all;
+            word-spacing: 2px;
+            a {
+                font-size: 15px;
+                color: $mainblue;
+            }
         }
         &__dots {
             display: inline-flex;

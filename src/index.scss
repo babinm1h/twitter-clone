@@ -108,7 +108,7 @@ body {
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .loading {
@@ -123,5 +123,35 @@ body {
     border-radius: 9999px;
     width: 135px;
     height: 135px;
-    object-fit: contain;
+    object-fit: cover;
+}
+.follow-btn {
+    background-color: black;
+    color: white;
+    &:hover {
+        background-color: lighten(black, 15%);
+    }
+    &:active {
+        background-color: lighten(black, 25%);
+    }
+    &:disabled {
+        pointer-events: none;
+        background-color: $greyactive;
+    }
+}
+
+.unfollow-btn {
+    background-color: white;
+    color: black;
+    border: 2px solid $grey;
+    &:hover {
+        background-color: $greyhover;
+    }
+    &:active {
+        background-color: $greyactive;
+    }
+    &:disabled {
+        pointer-events: none;
+        background-color: $greyhover;
+    }
 }

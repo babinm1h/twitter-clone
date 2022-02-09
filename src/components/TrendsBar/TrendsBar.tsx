@@ -6,27 +6,42 @@ import { fetchTrendsThunk } from '../../store/actions/TrendsActions';
 import { LoadingState } from '../../types/TweetsTypes';
 import "./TrendsBar.scss"
 
-const TrendsBar = () => {
-    const dispatch = useDispatch()
-    const { items, loadingState } = useTypedSelector(state => state.trends)
-
-    React.useEffect(() => {
-        dispatch(fetchTrendsThunk())
-    }, [])
-
-
-    if (loadingState === LoadingState.LOADING) {
-        return <Loader />
+const items = [
+    {
+        name: "В 2022",
+        count: 777999
+    },
+    {
+        name: "Коронавирус",
+        count: 17872
+    },
+    {
+        name: "Good luck",
+        count: 7984
     }
+]
+
+const TrendsBar = () => {
+    // const dispatch = useDispatch()
+    // const { items, loadingState } = useTypedSelector(state => state.trends)
+
+    // React.useEffect(() => {
+    //     dispatch(fetchTrendsThunk())
+    // }, [])
+
+
+    // if (loadingState === LoadingState.LOADING) {
+    //     return <Loader />
+    // }
 
     return (
         <ul className="trends">
             <h3>Тренды для вас</h3>
-            {/* {items.map(i =>
+            {items.map(i =>
                 <li className="trends__item" key={i.name}>
                     <p className="trends__item_title">{i.name}</p>
                     <p className="trends__item_tweets">{i.count} Твитов</p>
-                </li>)} */}
+                </li>)}
         </ul>
     );
 };

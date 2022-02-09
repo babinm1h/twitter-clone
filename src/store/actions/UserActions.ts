@@ -1,11 +1,11 @@
 import { Dispatch } from "react";
 import { ILoginData } from "../../components/LoginPage/LoginModal/LoginModal";
 import { AuthApi } from "../../services/api/auth";
+import { FollowApi } from "../../services/api/follow";
 import { ProfileApi } from "../../services/api/profile";
 import { TweetsApi } from "../../services/api/tweets";
-import { UploadApi } from "../../services/api/upload";
-import { ITweet, LoadingState } from "../../types/TweetsTypes";
-import { IDBUser, ILikeTweetAction, ILogoutAction, ISetUserAbout, ISetUserDataAction, ISetUserLoadingAction, IUnLikeTweetAction, IUploadAvatarAction, UserActions, UserActionTypes } from "../../types/UserTypes";
+import { LoadingState } from "../../types/TweetsTypes";
+import { IDBUser, IFollowAction, ILikeTweetAction, ILogoutAction, ISetUserAbout, ISetUserDataAction, ISetUserLoadingAction, IUnfollowAction, IUnLikeTweetAction, IUploadAvatarAction, UserActions, UserActionTypes } from "../../types/UserTypes";
 
 
 
@@ -23,6 +23,9 @@ export const uploadAvatar = (payload: string): IUploadAvatarAction => ({ type: U
 
 export const setUserAbout = (payload: string): ISetUserAbout => ({ type: UserActionTypes.SET_ABOUT, payload })
 
+const follow = (payload: string): IFollowAction => ({ type: UserActionTypes.FOLLOW, payload })
+
+const unfollow = (payload: string): IUnfollowAction => ({ type: UserActionTypes.UNFOLLOW, payload })
 
 // ============================================ THUNKS
 export const login = (payload: ILoginData) => {
@@ -113,6 +116,29 @@ export const setUserAboutThunk = (payload: string) => {
         try {
             await ProfileApi.setAbout(payload)
             dispatch(setUserAbout(payload))
+        } catch (err) {
+            dispatch(setUserLoading(LoadingState.ERROR))
+        }
+    }
+}
+
+
+export const followThunk = (payload: string) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            await FollowApi.follow(payload)
+            dispatch(follow(payload))
+        } catch (err) {
+            dispatch(setUserLoading(LoadingState.ERROR))
+        }
+    }
+}
+
+export const unfollowThunk = (payload: string) => {
+    return async (dispatch: Dispatch<UserActions>) => {
+        try {
+            await FollowApi.unfollow(payload)
+            dispatch(unfollow(payload))
         } catch (err) {
             dispatch(setUserLoading(LoadingState.ERROR))
         }

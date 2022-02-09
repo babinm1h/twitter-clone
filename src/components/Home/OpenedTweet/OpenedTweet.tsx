@@ -1,5 +1,4 @@
 import React from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
 import { BsUpload } from 'react-icons/bs';
 import { FaRegComment } from 'react-icons/fa';
 import { FiRepeat } from 'react-icons/fi';
@@ -18,6 +17,7 @@ import TweetImages from '../Tweet/TweetImages.tsx/TweetImages';
 import { FcLike, FcLikePlaceholder } from "react-icons/fc"
 import { unlikeTweetThunk, likeTweetThunk } from '../../../store/actions/UserActions';
 import { LoadingState } from '../../../types/TweetsTypes';
+import Linkify from 'linkify-react';
 
 
 
@@ -104,7 +104,7 @@ const TweetPage = () => {
                     </div>}
                 </div>
                 <div className="opened-tweet__text">
-                    {data.text}
+                    <Linkify>{data.text}</Linkify>
                 </div>
 
                 {data.images && <TweetImages images={data.images} />}

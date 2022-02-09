@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import { BsImage, BsEmojiSmile } from 'react-icons/bs';
+import { BsEmojiSmile } from 'react-icons/bs';
 import { AiFillCloseCircle } from "react-icons/ai"
 import { BiErrorCircle } from "react-icons/bi"
 import userImg from "../../../img/Home/defaultUser.png"
@@ -13,6 +13,7 @@ import UploadImg from './UploadImg/UploadImg';
 import "./TweetForm.scss"
 import { uploadImg } from '../../../utils/uploadImg';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { NavLink } from 'react-router-dom';
 
 interface ITweetFormProps {
     loadingState?: LoadingState
@@ -36,7 +37,7 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
         },
 
         onSubmit: async (values, { resetForm, setSubmitting }) => {
-            setSubmitting(false)
+            setSubmitting(true)
             values.images = images
             const urls = []
             for (let i = 0; i < images.length; i++) {
@@ -48,7 +49,7 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
             dispatch(addTweetThunk({ text: values.text, images: urls }))
             resetForm()
             setImages([])
-            setSubmitting(true)
+            setSubmitting(false)
         },
 
         validationSchema: Yup.object().shape({
@@ -62,7 +63,9 @@ const TweetForm: React.FC<ITweetFormProps> = ({ loadingState }) => {
     return (
         <>
             <form className="tweet-form" onSubmit={formik.handleSubmit}>
-                <img src={data?.avatarUrl || userImg} alt="user" className="small-avatar" />
+                <NavLink to={`/${data?.username}/${data?._id}`}>
+                    <img src={data?.avatarUrl} alt="user" className="small-avatar" />
+                </NavLink>
                 <div className="tweet-form__block">
                     <textarea className="tweet-form__area" name="text"
                         placeholder="Что происходит?"

@@ -1,4 +1,4 @@
-import { ITweet, LoadingState } from "./TweetsTypes";
+import { LoadingState } from "./TweetsTypes";
 
 export interface IDBUser {
     _id?: string,
@@ -13,6 +13,8 @@ export interface IDBUser {
     website: string
     likes?: string[]
     avatarUrl: string
+    followers: string[]
+    following: string[]
 }
 
 
@@ -30,7 +32,9 @@ export enum UserActionTypes {
     LIKE_TWEET = "user/LIKE_TWEET",
     UNLIKE_TWEET = "user/UNLIKE_TWEET",
     UPLOAD_AVATAR = "user/UPLOAD_AVATAR",
-    SET_ABOUT = "user/SET_ABOUT"
+    SET_ABOUT = "user/SET_ABOUT",
+    FOLLOW = "user/FOLLOW",
+    UNFOLLOW = "user/UNFOLLOW",
 }
 
 export interface ISetUserDataAction {
@@ -60,6 +64,14 @@ export interface ISetUserAbout {
     type: UserActionTypes.SET_ABOUT
     payload: string
 }
+export interface IFollowAction {
+    type: UserActionTypes.FOLLOW
+    payload: string
+}
+export interface IUnfollowAction {
+    type: UserActionTypes.UNFOLLOW
+    payload: string
+}
 
 export type UserActions = ISetUserDataAction | ISetUserLoadingAction |
-    ILogoutAction | ILikeTweetAction | IUnLikeTweetAction | IUploadAvatarAction | ISetUserAbout
+    ILogoutAction | ILikeTweetAction | IUnLikeTweetAction | IUploadAvatarAction | ISetUserAbout | IFollowAction | IUnfollowAction

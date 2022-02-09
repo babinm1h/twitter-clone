@@ -15,10 +15,11 @@ import { fetchProfileData } from '../../store/actions/ProfileActions';
 import Modal from '../../common/Modal/Modal';
 import { FiCamera } from "react-icons/fi"
 import { ImgObj } from '../Home/TweetForm/TweetForm';
-import { uploadAvatar, uploadImg } from '../../utils/uploadImg';
-import { setUserAboutThunk, uploadAvatarThunk } from '../../store/actions/UserActions';
+import { uploadAvatar } from '../../utils/uploadImg';
+import { followThunk, setUserAboutThunk, unfollowThunk, uploadAvatarThunk } from '../../store/actions/UserActions';
 import { useFormik } from 'formik';
 import * as Yup from "yup"
+import Linkify from 'linkify-react';
 
 const Profile = () => {
     const [modal, setModal] = React.useState<boolean>(false)
@@ -28,9 +29,9 @@ const Profile = () => {
     const { username, id } = useParams()
     const { data, loadingState: profileLoading } = useTypedSelector(state => state.profile)
     const { loadingState, userTweets } = useTypedSelector(state => state.tweets)
-    const ownerId = useTypedSelector(state => state.user.data?._id)
+    const { data: myData } = useTypedSelector(state => state.user)
 
-    const isOwner = data?._id === ownerId
+    const isOwner = data?._id === myData?._id
 
     React.useEffect(() => {
         if (id) {
@@ -38,7 +39,6 @@ const Profile = () => {
             dispatch(fetchUserTweets(id))
         }
     }, [id, dispatch])
-
 
 
     const handleCloseModal = () => {
@@ -56,31 +56,37 @@ const Profile = () => {
         }
     }
 
-
-    const handleSaveChanges = async () => {
-
-    }
-
     const formik = useFormik({
         initialValues: {
-            about: ""
+            about: data?.about || ""
         },
 
         validationSchema: Yup.object().shape({
             about: Yup.string().max(300, "Максимальное количество символов - 300")
         }),
 
-        onSubmit: async (values) => {
+        onSubmit: async (values, { setSubmitting }) => {
+            setSubmitting(true)
             if (ava.file) {
                 const { url } = await uploadAvatar(ava?.file)
                 dispatch(uploadAvatarThunk(url))
+                dispatch(setUserAboutThunk(values.about))
+                dispatch(fetchProfileData(id!))
+                setModal(false)
+            } else {
+                dispatch(setUserAboutThunk(values.about))
+                dispatch(fetchProfileData(id!))
+                setModal(false)
             }
-            dispatch(setUserAboutThunk(values.about))
-            dispatch(fetchProfileData(id!))
-            setModal(false)
         }
     })
 
+    const handleFollow = () => {
+        dispatch(followThunk(data?._id!))
+    }
+    const handleUnfollow = () => {
+        dispatch(unfollowThunk(data?._id!))
+    }
 
     if (profileLoading === LoadingState.LOADING) {
         return <div className="loading"><Loader /></div>
@@ -104,18 +110,31 @@ const Profile = () => {
                 <div className="profile__owner">
                     <div className="profile__edit-block">
                         <span></span>
-                        {isOwner && <button className="btn profile__edit-btn" onClick={handleOpenModal}>
+                        {isOwner ? <button className="btn profile__edit-btn" onClick={handleOpenModal}>
                             Изменить профиль
-                        </button>}
+                        </button>
+                            : !myData?.following.includes(data?._id!)
+                                ? <button className="follow__item__btn btn follow-btn"
+                                    onClick={handleFollow}>
+                                    Подписаться
+                                </button>
+                                : <button className="follow__item__btn btn unfollow-btn"
+                                    onClick={handleUnfollow}>
+                                    Отписаться
+                                </button>}
                     </div>
                     <ul className="profile__info">
                         <li className="profile__name">{data?.fullName}</li>
                         <li className="profile__nick">@{data?.username}</li>
-                        <li className="profile__status">
-                            <p>{data?.about}</p>
+                        <li className="profile__about">
+                            <Linkify><p>{data?.about}</p></Linkify>
                         </li>
                         <li className="profile__joined">
-                            <BsCalendarWeek /> <p>Joined January 2022</p>
+                            <BsCalendarWeek /> <p>Зарегестрировался: 2022</p>
+                        </li>
+                        <li className="profile__follow-info">
+                            <p><span className="follow-count">{data?.following.length}</span>Подписок</p>
+                            <p><span className="follow-count">{data?.followers.length}</span>Подписчиков</p>
                         </li>
                     </ul>
 
@@ -123,6 +142,11 @@ const Profile = () => {
                         <NavLink to="">
                             <div className="profile__tabs__item profile__tabs__item_active">
                                 <span>Tweets</span>
+                            </div>
+                        </NavLink>
+                        <NavLink to="/likes">
+                            <div className="profile__tabs__item">
+                                <span>Likes</span>
                             </div>
                         </NavLink>
                     </nav>
@@ -151,8 +175,8 @@ const Profile = () => {
                         <label htmlFor="about" className="profile__edit__label">About</label>
                         <textarea className="profile__edit__input" id="about"
                             onChange={formik.handleChange} value={formik.values.about} />
-                        <button className="btn profile__edit__btn"
-                            type="submit">
+                        <button className="btn profile__edit__btn" type="submit"
+                            disabled={formik.isSubmitting || !!formik.errors.about}>
                             Сохранить
                         </button>
                     </form>

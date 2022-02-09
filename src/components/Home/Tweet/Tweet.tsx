@@ -2,21 +2,20 @@ import React, { ChangeEvent } from 'react';
 import { FaRegComment } from "react-icons/fa"
 import { FiRepeat } from "react-icons/fi"
 import { BsUpload } from "react-icons/bs"
-import { AiOutlineHeart } from "react-icons/ai"
 import { ITweet, LoadingState } from '../../../types/TweetsTypes';
 import { NavLink } from 'react-router-dom';
-import userImg from "../../../img/Home/defaultUser.png"
 import { formatDate } from '../../../utils/formatDate';
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import "./Tweet.scss"
 import TweetModal from './TweetModal/TweetModal';
 import TweetImages from './TweetImages.tsx/TweetImages';
 import { useDispatch } from 'react-redux';
-import { deleteTweetThunk, fetchTweetsThunk } from '../../../store/actions/TweetsActions';
+import { deleteTweetThunk } from '../../../store/actions/TweetsActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { likeTweetThunk, unlikeTweetThunk } from '../../../store/actions/UserActions';
 import { FcLike, FcLikePlaceholder } from "react-icons/fc"
 import { TweetsApi } from '../../../services/api/tweets';
+import Linkify from 'linkify-react';
 
 
 interface ITweetProps {
@@ -87,7 +86,7 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
         <>
             <li className="tweet">
                 <NavLink to={`/${item.user.username}/${item.user._id}`}>
-                    <img src={item.user.avatarUrl || userImg} alt="user" className="small-avatar" />
+                    <img src={item.user.avatarUrl} alt="user" className="small-avatar" />
                 </NavLink>
                 <div className="tweet__body">
                     <div className="tweet__body__header">
@@ -125,7 +124,7 @@ const Tweet: React.FC<ITweetProps> = ({ item }) => {
                         <li className="tweet__actions_item">
                             <FiRepeat className="tweet__actions_icon"
                                 size={17} />
-                            <span>1499</span>
+                            <span>999</span>
                         </li>
                         <li className="tweet__actions_item">
                             {!data?.likes?.includes(item._id)

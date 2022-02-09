@@ -13,6 +13,11 @@
         margin-bottom: 15px;
         overflow-wrap: break-word;
         word-break: break-all;
+        word-spacing: 2px;
+        a {
+            font-size: 23px;
+            color: $mainblue;
+        }
     }
     &__fullname {
         font-size: 17px;

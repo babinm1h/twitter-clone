@@ -17,30 +17,18 @@
             font-size: 15px;
             margin-bottom: 5px;
             text-overflow: ellipsis;
-            max-width: 160px;
+            max-width: 120px;
             overflow: hidden;
         }
         &__nick {
             font-size: 15px;
             color: $grey;
             text-overflow: ellipsis;
-            max-width: 160px;
+            max-width: 120px;
             overflow: hidden;
         }
         &__btn {
-            background-color: black;
-            color: white;
             margin-left: 20px;
-            &:hover {
-                background-color: lighten(black, 15%);
-            }
-            &:active {
-                background-color: lighten(black, 25%);
-            }
-            &:disabled {
-                pointer-events: none;
-                background-color: $greyhover;
-            }
         }
         &__info {
             display: flex;
