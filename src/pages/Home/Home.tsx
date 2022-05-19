@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Home.scss"
 import { BsTwitter, BsFillPencilFill } from "react-icons/bs"
-import { AiOutlineHome, AiOutlineSearch, AiOutlineMail, AiOutlineUser } from "react-icons/ai"
+import { AiOutlineHome, AiOutlineUser } from "react-icons/ai"
 import TweetForm from '../../components/Home/TweetForm/TweetForm';
 import Modal from '../../common/Modal/Modal';
 import TrendsBar from '../../components/TrendsBar/TrendsBar';
@@ -32,8 +32,6 @@ const Home = () => {
         { icon: <AiOutlineHome className="sidebar-menu__icon" size={28} />, title: "Главная", path: "/home" },
         { icon: <AiOutlineUser className="sidebar-menu__icon" size={28} />, title: "Профиль", path: `/${data?.username}/${data?._id}` },
         { icon: <FiUsers className="sidebar-menu__icon" size={28} />, title: "Пользователи", path: "/users" },
-        { icon: <AiOutlineSearch className="sidebar-menu__icon" size={28} />, title: "Поиск", path: "" },
-        { icon: <AiOutlineMail className="sidebar-menu__icon" size={28} />, title: "Сообщения", path: "" },
     ]
 
     return (
@@ -49,7 +47,7 @@ const Home = () => {
                                             <BsTwitter size={30} className="home__logo" />
                                         </NavLink>
                                     </li>
-                                    {navItems.map(i => <li>
+                                    {navItems.map(i => <li key={i.title}>
                                         <NavLink to={i.path} className="sidebar-menu__item">
                                             {i.icon}<span>{i.title}</span>
                                         </NavLink>
@@ -63,7 +61,7 @@ const Home = () => {
                         </div>
 
                         <AuthUser />
-                        
+
                     </div>
 
 
